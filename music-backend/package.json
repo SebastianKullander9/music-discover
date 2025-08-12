@@ -1,0 +1,24 @@
+{
+  "name": "music-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.mts",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --respawn --transpile-only server.mts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.2.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "fastify": "^5.4.0",
+    "neo4j-driver": "^5.28.1"
+  }
+}

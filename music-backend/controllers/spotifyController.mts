@@ -1,5 +1,6 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import * as spotifyService from "../services/spotifyService.mts";
+import { NotFoundError, SpotifyAPIError } from "../errors.mts";
 
 export async function getSpotifyAccessToken(
     request: FastifyRequest,
@@ -7,12 +8,17 @@ export async function getSpotifyAccessToken(
 ) {
     try {
         const token = await spotifyService.getSpotifyAccessToken();
-        return { access_token: token };
+        
+        if (!token) {
+            throw new SpotifyAPIError("Failed to retrieve access token");
+        }
+
+        return { success: true, data: { access_token: token }};
     } catch (err) {
         if (err instanceof Error) {
-            reply.code(500).send({ error: err.message });
+            throw new SpotifyAPIError(err.message)
         } else {
-            reply.code(500).send({ error: String(err) });
+            throw new SpotifyAPIError(String(err));
         }
     }
 }
@@ -21,44 +27,26 @@ export async function getArtistById(
     request: FastifyRequest<{ Querystring: { id: string } }>,
     reply: FastifyReply
 ) {
-    const { id } = request.query;
+    const artist = await spotifyService.getArtistById(request.query.id);
 
-    if (!id) {
-        return reply.code(400).send({ error: "Missing artist id in query parameter" });
+    if (!artist) {
+        throw new NotFoundError("Artist not found");
     }
 
-    try {
-        const artist = await spotifyService.getArtistById(id);
+    console.log(artist)
 
-        return artist;
-    } catch (err) {
-        if (err instanceof Error) {
-            reply.code(500).send({ error: err.message });
-        } else {
-            reply.code(500).send({ error: String(err) });
-        }
-            }
+    return { success: true, data: artist }; 
 }
 
 export async function getArtistByName(
     request: FastifyRequest<{ Querystring: { name: string } }>,
     reply: FastifyReply
 ) {
-    const { name } = request.query;
+    const artist = await spotifyService.getArtistByName(request.query.name);
 
-    if (!name) {
-        return reply.code(400).send({ error: "Missing name of artist in query paramenter" });
+    if (!artist) {
+        throw new NotFoundError("Artist not found");
     }
 
-    try {
-        const artist = await spotifyService.getArtistByName(name);
-
-        return artist;
-    } catch (err) {
-        if (err instanceof Error) {
-            reply.code(500).send({ error: err.message });
-        } else {
-            reply.code(500).send({ error: String(err) });
-        }
-    }
+    return { success: true, data: artist };
 }

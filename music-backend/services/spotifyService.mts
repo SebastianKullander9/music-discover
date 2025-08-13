@@ -1,3 +1,5 @@
+import { SpotifyAPIError } from "../errors.mts";
+
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -32,6 +34,13 @@ export async function getSpotifyAccessToken() {
         body: params.toString()
     });
 
+    if (!response.ok) {
+        throw new SpotifyAPIError(
+            `Failed to get Spotify access token: ${response.status} ${response.statusText}`,
+            response.status
+        );
+    }
+
     const data = await response.json();
     spotifyToken = data.access_token;
     tokenExpiresAt = now + data.expires_in * 1000 - 60000;
@@ -50,7 +59,10 @@ export async function getArtistById(artistId: string) {
     });
 
     if (!response.ok) {
-        throw new Error(`Failed to fetch artist: ${response.statusText}`);
+        throw new SpotifyAPIError(
+            `Spotify API request failed: ${response.status} ${response.statusText}`,
+            response.status
+        );
     }
 
     return await response.json();
@@ -71,7 +83,10 @@ export async function getArtistByName(artist: string) {
     });
 
     if (!response.ok) {
-        throw new Error(`Failed to fetch artist: ${response.statusText}`);
+        throw new SpotifyAPIError(
+            `Spotify API request failed: ${response.status} ${response.statusText}`,
+            response.status
+        );
     }
 
     return await response.json();

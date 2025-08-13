@@ -1,3 +1,5 @@
+import { ListenbrainzAPIError } from "../errors.mts";
+
 export async function searchArtistByName(name: string) {
     const encodedQuery = encodeURIComponent(name);
     const url = `https://musicbrainz.org/ws/2/artist?query=${encodedQuery}&fmt=json`;
@@ -10,7 +12,10 @@ export async function searchArtistByName(name: string) {
     });
 
     if (!response.ok) {
-        throw new Error(`Failed to fetch artist: ${response.statusText}`);
+        throw new ListenbrainzAPIError(
+            `Listenbrainz API request failed: ${response.status} ${response.statusText}`,
+            response.status
+        );
     }
 
     return await response.json();
@@ -25,6 +30,13 @@ export async function getArtistsRelatedArtists(id: string) {
             "User-Agent": "new-music-discovery-by-nodes/0.1 ( kullander.sebastian@gmail.com )"
         }
     });
+
+    if (!response.ok) {
+        throw new ListenbrainzAPIError(
+            `Listenbrainz API request failed: ${response.status} ${response.statusText}`,
+            response.status
+        );
+    }
 
     return await response.json();
 }

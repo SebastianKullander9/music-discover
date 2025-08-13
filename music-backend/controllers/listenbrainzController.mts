@@ -1,48 +1,29 @@
 import { FastifyRequest, FastifyReply } from "fastify";
+import { NotFoundError } from "../errors.mts";
 import * as listenbrainzService from "../services/listenbrainzService.mts";
 
 export async function getArtistByName(
     request: FastifyRequest<{ Querystring: { name: string } }>,
     reply: FastifyReply
 ) {
-    try {
-        const { name } = request.query;
+    const artist = await listenbrainzService.searchArtistByName(request.query.name);
 
-        if (!name) {
-            return reply.code(400).send({ error: "Missing artists name in query parameter" });
-        }
-
-        const artist = await listenbrainzService.searchArtistByName(name);
-
-        return artist;
-    } catch (err) {
-        if (err instanceof Error) {
-            reply.code(500).send({ error: err.message });
-        } else {
-            reply.code(500).send({ error: String(err) });
-        }
+    if (!artist) {
+        throw new NotFoundError("Artist not found");
     }
+
+    return { success: true, data: artist }; 
 }
 
 export async function getArtistsRelatedArtists(
     request: FastifyRequest<{ Querystring: { id: string } }>,
     reply: FastifyReply
 ) {
-    try {
-        const { id } = request.query;
+    const artists = await listenbrainzService.getArtistsRelatedArtists(request.query.id);
 
-        if (!id) {
-            return reply.code(400).send({ error: "Missing artists name in query parameter" });
-        }
-
-        const artists = await listenbrainzService.getArtistsRelatedArtists(id);
-
-        return artists;
-    } catch (err) {
-        if (err instanceof Error) {
-            reply.code(500).send({ error: err.message });
-        } else {
-            reply.code(500).send({ error: String(err) });
-        }
+    if (!artists) {
+        throw new NotFoundError("Artists not found");
     }
+
+    return { success: true, data: artists };
 }

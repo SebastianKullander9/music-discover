@@ -89,5 +89,6 @@ export async function getArtistByName(artist: string) {
         );
     }
 
-    return await response.json();
+    const data = await response.json();
+    return data.artists.items[0];
 }

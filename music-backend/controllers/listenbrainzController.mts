@@ -12,7 +12,7 @@ export async function getArtistByName(
         throw new NotFoundError("Artist not found");
     }
 
-    return { success: true, data: artist }; 
+    return { success: true, data: { items: Array.isArray(artist) ? artist : [artist] } };
 }
 
 export async function getArtistsRelatedArtists(
@@ -25,5 +25,5 @@ export async function getArtistsRelatedArtists(
         throw new NotFoundError("Artists not found");
     }
 
-    return { success: true, data: artists };
+    return { success: true, data: { items: Array.isArray(artists) ? artists : [artists] } };
 }

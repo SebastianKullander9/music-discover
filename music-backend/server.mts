@@ -1,6 +1,7 @@
 import Fastify from "fastify";
 import spotifyRoutes from "./routes/spotifyRoutes.mts";
 import listenbrainzRoutes from "./routes/listenbrainzRoutes.mts";
+import artistAggregatorRoutes from "./routes/artistAggregatorRoutes.mts";
 import { AppError } from "./errors.mts";
 
 import dotenv from "dotenv";
@@ -34,6 +35,7 @@ fastify.setErrorHandler((err, request, reply) => {
 
 fastify.register(spotifyRoutes, { prefix: "/spotify" });
 fastify.register(listenbrainzRoutes, { prefix: "/listenbrainz"})
+fastify.register(artistAggregatorRoutes, { prefix: "/api" });
 
 async function start() {
     try {

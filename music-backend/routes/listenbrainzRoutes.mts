@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { getArtistByName, getArtistsRelatedArtists } from "../controllers/listenbrainzController.mts";
 
-export default async function spotifyRoutes(fastify: FastifyInstance) {
+export default async function listenbrainzRoutes(fastify: FastifyInstance) {
     fastify.get("/get-artist-by-name", {
         schema: {
             querystring: {

@@ -33,8 +33,6 @@ export async function getArtistById(
         throw new NotFoundError("Artist not found");
     }
 
-    console.log(artist)
-
     return { success: true, data: artist }; 
 }
 

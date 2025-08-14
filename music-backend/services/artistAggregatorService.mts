@@ -1,4 +1,6 @@
-const BASE_URL = "http://localhost:3001";
+import { createArtistIfNotExists } from "../neo4j.mts";
+
+const BASE_URL = "http://localhost:3000";
 const RELATED_LIMIT = 15;
 
 async function fetchJSON(url: string) {
@@ -23,16 +25,22 @@ export async function aggregateArtistsAndAddNodes(name: string) {
     const artistNames = [mainArtist.name, ...relatedNames];
 
     //get main and related artists spotify data
-    const relatedArtists = (
+    const relatedArtistsData = (
         await Promise.all(artistNames.map(async artistName => {
             try {
                 const spotifyData = await fetchJSON(`${BASE_URL}/spotify/get-artist-by-name?name=${encodeURIComponent(artistName)}`);
-                const artistObject = spotifyData.data;
+                const artistObjectSpotify = spotifyData.data;
+
+                
+                const listenbrainzData = await fetchJSON(`${BASE_URL}/listenbrainz/get-artist-by-name?name=${encodeURIComponent(artistName)}`)
+                const artistObjectListenbrainz = listenbrainzData.data;
 
                 return {
-                    name: artistObject.name,
-                    genres: artistObject.genres,
-                    popularity: artistObject.popularity
+                    name: artistObjectSpotify.name,
+                    genres: artistObjectSpotify.genres,
+                    popularity: artistObjectSpotify.popularity,
+                    followers: artistObjectSpotify.followers.total,
+                    tags: artistObjectListenbrainz.items[0].artists[0].tags
                 };
             } catch (err) {
                 console.error(`failed to fetch spotify data for: ${artistName}. ${err}`);
@@ -40,7 +48,12 @@ export async function aggregateArtistsAndAddNodes(name: string) {
             }
         }))
     ).filter(Boolean);
+    
+    await Promise.all(
+       relatedArtistsData.map(artist => createArtistIfNotExists(artist?.name, "test"))
+    );
 
+    console.log(relatedArtistsData)
 
-    return relatedArtists;
+    return relatedArtistsData;
 }

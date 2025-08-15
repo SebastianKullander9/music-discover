@@ -1,6 +1,8 @@
 import Fastify from "fastify";
 import spotifyRoutes from "./routes/spotifyRoutes.mts";
 import listenbrainzRoutes from "./routes/listenbrainzRoutes.mts";
+import lastfmRoutes from "./routes/lastfmRoutes.mts";
+import musicbrainzRoutes from "./routes/musicbrainzRoutes.mts";
 import artistAggregatorRoutes from "./routes/artistAggregatorRoutes.mts";
 import { AppError } from "./errors.mts";
 
@@ -34,7 +36,9 @@ fastify.setErrorHandler((err, request, reply) => {
 });
 
 fastify.register(spotifyRoutes, { prefix: "/spotify" });
-fastify.register(listenbrainzRoutes, { prefix: "/listenbrainz"})
+fastify.register(listenbrainzRoutes, { prefix: "/listenbrainz"});
+fastify.register(lastfmRoutes, { prefix: "/lastfm"});
+fastify.register(musicbrainzRoutes, { prefix: "/musicbrainz" });
 fastify.register(artistAggregatorRoutes, { prefix: "/api" });
 
 async function start() {

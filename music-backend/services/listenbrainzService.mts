@@ -40,3 +40,23 @@ export async function getArtistsRelatedArtists(id: string) {
 
     return await response.json();
 }
+
+export async function getArtistsTopTracks(mbid: string) {
+    const url = `https://labs.api.listenbrainz.org/1/popularity/top-recordings-for-artist/${mbid}`;
+
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "User-Agent": "new-music-discovery-by-nodes/0.1 ( kullander.sebastian@gmail.com )"
+        }
+    });
+
+    if (!response.ok) {
+        throw new ListenbrainzAPIError(
+            `Listenbrainz API request failed: ${response.status} ${response.statusText}`,
+            response.status
+        );
+    }
+
+    return await response.json();
+}

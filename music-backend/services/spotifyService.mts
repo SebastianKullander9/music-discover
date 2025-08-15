@@ -6,8 +6,8 @@ dotenv.config();
 let spotifyToken = "";
 let tokenExpiresAt = 0;
 
-const client_id = process.env.CLIENT_ID!;
-const client_secret = process.env.CLIENT_SECRET!;
+const client_id = process.env.SPOTIFY_CLIENT_ID!;
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET!;
 
 if (!client_id || !client_secret) {
     throw new Error("Missing Spotify client ID or secret in env variables");
@@ -92,3 +92,28 @@ export async function getArtistByName(artist: string) {
     const data = await response.json();
     return data.artists.items[0];
 }
+
+/*export async function getArtistTopTracks(id: string) {
+    const token = await getSpotifyAccessToken();
+
+    const url = `https://api.spotify.com/v1/artists/${id}/top-tracks`;
+
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+        }
+    });
+
+    if (!response.ok) {
+        throw new SpotifyAPIError(
+            `Spotify API request failed: ${response.status} ${response.statusText}`,
+            response.status
+        );
+    }
+
+    const data = await response.json();
+    return data;
+}
+*/

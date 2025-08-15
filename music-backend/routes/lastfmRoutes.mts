@@ -1,58 +1,8 @@
 import { FastifyInstance } from "fastify";
-import { getArtistByName, getArtistsRelatedArtists, getArtistsTopTracks } from "../controllers/listenbrainzController.mts";
+import { getSimilarArtists, getArtistTopTags, getArtistTopTracks } from "../controllers/lastfmController.mts";
 
-export default async function listenbrainzRoutes(fastify: FastifyInstance) {
-    fastify.get("/get-artist-by-name", {
-        schema: {
-            querystring: {
-                type: "object",
-                required: ["name"],
-                properties: {
-                    name: { type: "string", minLength: 1 }
-                }
-            },
-            response: {
-                200: {
-                    type: "object",
-                    properties: {
-                        success: { type: "boolean" },
-                        data: { 
-                            type: "object",
-                            additionalProperties: true
-                        }
-                    }
-                }
-            }
-        },
-        handler: getArtistByName
-    });
-
-    fastify.get("/get-artists-related-artists", {
-        schema: {
-            querystring: {
-                type: "object",
-                required: ["id"],
-                properties: {
-                    name: { type: "string", minLength: 1 }
-                }
-            },
-            response: {
-                200: {
-                    type: "object",
-                    properties: {
-                        success: { type: "boolean" },
-                        data: { 
-                            type: "object",
-                            additionalProperties: true
-                        }
-                    }
-                }
-            }
-        },
-        handler: getArtistsRelatedArtists
-    });
-
-    fastify.get("get-artists-top-tracks", {
+export default async function lastfmRoutes(fastify: FastifyInstance) {
+    fastify.get("/get-similar-artists", {
         schema: {
             querystring: {
                 type: "object",
@@ -74,6 +24,54 @@ export default async function listenbrainzRoutes(fastify: FastifyInstance) {
                 }
             }
         },
-        handler: getArtistsTopTracks
+        handler: getSimilarArtists
+    });
+
+    fastify.get("/get-artist-top-tags", {
+        schema: {
+            querystring: {
+                type: "object",
+                required: ["mbid"],
+                properties: {
+                    mbid: { type: "string", minLength: 1 }
+                }
+            },
+            response: {
+                200: {
+                    type: "object",
+                    properties: {
+                        success: { type: "boolean" },
+                        data: {
+                            type: "array"
+                        }
+                    }
+                }
+            }
+        },
+        handler: getArtistTopTags
+    });
+
+    fastify.get("/get-artist-top-tracks", {
+        schema: {
+            querystring: {
+                type: "object",
+                required: ["mbid"],
+                properties: {
+                    mbid: { type: "string", minLength: 1 }
+                }
+            },
+            response: {
+                200: {
+                    type: "object",
+                    properties: {
+                        success: { type: "boolean" },
+                        data: {
+                            type: "array"
+                        }
+                    }
+                }
+            }
+        },
+        handler: getArtistTopTracks
     });
 }

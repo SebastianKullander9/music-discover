@@ -29,3 +29,9 @@ export class ListenbrainzAPIError extends AppError {
         super(message, statusCode);
     }
 }
+
+export class LastFmError extends AppError {
+    constructor(message: string, statusCode = 502) {
+        super(message, statusCode);
+    }
+}

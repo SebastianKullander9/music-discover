@@ -27,3 +27,16 @@ export async function getArtistsRelatedArtists(
 
     return { success: true, data: { items: Array.isArray(artists) ? artists : [artists] } };
 }
+
+export async function getArtistsTopTracks(
+    request: FastifyRequest<{ Querystring: { mbid: string } }>,
+    reply: FastifyReply
+) {
+    const tracks = await listenbrainzService.getArtistsTopTracks(request.query.mbid);
+
+    if (!tracks) {
+        throw new NotFoundError("Tracks not found");
+    }
+
+    return { success: true, data: tracks }
+}

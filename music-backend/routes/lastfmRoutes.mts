@@ -17,8 +17,7 @@ export default async function lastfmRoutes(fastify: FastifyInstance) {
                     properties: {
                         success: { type: "boolean" },
                         data: { 
-                            type: "object",
-                            additionalProperties: true
+                            type: "array"
                         }
                     }
                 }

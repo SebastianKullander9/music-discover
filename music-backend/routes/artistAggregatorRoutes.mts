@@ -1,8 +1,8 @@
 import { FastifyInstance } from "fastify";
-import { aggregateArtistsAndAddNodesByName } from "../controllers/artistAggregatorController.mts";
+import { aggregateArtistData } from "../controllers/artistAggregatorController.mts";
 
 export default async function artistAggregatorRoutes(fastify: FastifyInstance) {
-    fastify.get("/aggregate-artists-and-add-nodes", {
+    fastify.get("/aggregate-artist-data", {
         schema: {
             querystring: {
                 type: "object",
@@ -24,6 +24,6 @@ export default async function artistAggregatorRoutes(fastify: FastifyInstance) {
                 }
             }
         },
-        handler: aggregateArtistsAndAddNodesByName
+        handler: aggregateArtistData
     });
 }

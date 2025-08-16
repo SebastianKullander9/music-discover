@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { getHighLevelDataFromTracks } from "../controllers/musicbrainzController.mts";
 
-export default async function listenbrainzRoutes(fastify: FastifyInstance) {
+export default async function musicbrainzRoutes(fastify: FastifyInstance) {
     fastify.get("/get-high-level-data-from-tracks", {
         schema: {
             querystring: {

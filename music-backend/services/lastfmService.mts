@@ -25,7 +25,14 @@ export async function getSimilarArtists(mbid: string) {
         );
     }
 
-    return await response.json();
+    const similarArtistsObject = await response.json();
+    const similarArtistsArray = similarArtistsObject.similarartists.artist.map((artist: any) => ({
+        name: artist.name,
+        artistMbid: artist.mbid,
+        match: artist.match
+    }));
+
+    return similarArtistsArray;
 }
 
 export async function getArtistTopTags(mbid: string) {
@@ -45,7 +52,14 @@ export async function getArtistTopTags(mbid: string) {
         );
     }
 
-    return await response.json();
+    const data = await response.json();
+
+    const cleanedTags = data.toptags.tag.map((tag: any) => ({
+        name: tag.name,
+        count: Number(tag.count)
+    }));
+
+    return await cleanedTags;
 }
 
 export async function getArtistTopTracks(mbid: string) {
@@ -64,6 +78,12 @@ export async function getArtistTopTracks(mbid: string) {
             response.status
         );
     }
+    const data = await response.json();
+    
+    const cleanedTracks = data.toptracks.track.map((track: any) => ({
+        name: track.name,
+        trackMbid: track.mbid
+    }));
 
-    return await response.json();
+    return await cleanedTracks;
 }

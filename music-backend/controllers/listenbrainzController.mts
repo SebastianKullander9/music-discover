@@ -15,6 +15,19 @@ export async function getArtistByName(
     return { success: true, data: { items: Array.isArray(artist) ? artist : [artist] } };
 }
 
+export async function getArtistByMbid(
+    request: FastifyRequest<{ Querystring: { mbid: string } }>,
+    reply: FastifyReply
+) {
+    const artist = await listenbrainzService.getArtistByMbid(request.query.mbid);
+
+    if (!artist) {
+        throw new NotFoundError("Artist not found");
+    }
+
+    return { success: true, data: artist };
+}
+
 export async function getArtistsRelatedArtists(
     request: FastifyRequest<{ Querystring: { id: string } }>,
     reply: FastifyReply

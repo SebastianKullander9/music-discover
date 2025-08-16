@@ -2,18 +2,18 @@ import { FastifyRequest, FastifyReply } from "fastify";
 import { NotFoundError } from "../errors.mts";
 import * as artistAggregatorService from "../services/artistAggregatorService.mts";
 
-export async function aggregateArtistsAndAddNodesByName(
+export async function aggregateArtistData(
     request: FastifyRequest<{ Querystring: { name: string } }>,
     reply: FastifyReply
 ) {
-    const artists = await artistAggregatorService.aggregateArtistsAndAddNodes(request.query.name);
+    const aggregatedData = await artistAggregatorService.aggregateArtistData(request.query.name);
 
-    if (!artists) {
-        throw new NotFoundError("Artist not found");
+    if (!aggregatedData) {
+        throw new NotFoundError("aggregated data not found");
     }
 
     return {
         success: true,
-        data: artists
+        data: aggregatedData
     };
 }

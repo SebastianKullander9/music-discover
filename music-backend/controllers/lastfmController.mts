@@ -12,7 +12,7 @@ export async function getSimilarArtists(
         throw new NotFoundError("Artists not found");
     }
 
-    return { success: true, data: data.similarartists.artist};
+    return { success: true, data: data};
 }
 
 export async function getArtistTopTags(
@@ -25,7 +25,7 @@ export async function getArtistTopTags(
         throw new NotFoundError("Artist not found");
     }
 
-    return { success: true, data: data.toptags.tag };
+    return { success: true, data: data };
 }
 
 export async function getArtistTopTracks(
@@ -38,5 +38,5 @@ export async function getArtistTopTracks(
         throw new NotFoundError("Artist not found");
     }
 
-    return { success: true, data: data.toptracks.track };
+    return { success: true, data: data };
 }

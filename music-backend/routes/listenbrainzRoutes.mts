@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { getArtistByName, getArtistsRelatedArtists, getArtistsTopTracks } from "../controllers/listenbrainzController.mts";
+import { getArtistByName, getArtistsRelatedArtists, getArtistsTopTracks, getArtistByMbid } from "../controllers/listenbrainzController.mts";
 
 export default async function listenbrainzRoutes(fastify: FastifyInstance) {
     fastify.get("/get-artist-by-name", {
@@ -25,6 +25,31 @@ export default async function listenbrainzRoutes(fastify: FastifyInstance) {
             }
         },
         handler: getArtistByName
+    });
+
+    fastify.get("/get-artist-by-mbid", {
+        schema: {
+            querystring: {
+                type: "object",
+                required: ["mbid"],
+                properties: {
+                    mbid: { type: "string", minLength: 1 }
+                }
+            },
+            response: {
+                200: {
+                    type: "object",
+                    properties: {
+                        success: { type: "boolean" },
+                        data: { 
+                            type: "object",
+                            additionalProperties: true
+                        }
+                    }
+                }
+            }
+        },
+        handler: getArtistByMbid
     });
 
     fastify.get("/get-artists-related-artists", {

@@ -14,6 +14,6 @@ export async function aggregateArtistData(
 
     return {
         success: true,
-        data: aggregatedData
+        data: aggregatedData[2]
     };
 }

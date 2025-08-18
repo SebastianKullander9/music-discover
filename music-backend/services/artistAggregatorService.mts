@@ -68,8 +68,6 @@ export async function aggregateArtistData(name: string) {
     const mainArtist = artistData.data.items[0]?.artists?.[0];
     if (!mainArtist) throw new Error("artist not found");
 
-    console.log(mainArtist)
-
     //get main artists related artists
     const relatedData = await fetchJSON(`${BASE_URL}/listenbrainz/get-artists-related-artists?id=${mainArtist.id}`);
     const relatedArtists = (relatedData.data.items as { name: string, artist_mbid: string}[])
@@ -80,8 +78,6 @@ export async function aggregateArtistData(name: string) {
         { name: mainArtist.name, artistMbid: mainArtist.id },
         ...relatedArtists
     ]
-
-    console.log(mainAndRelatedArtists)
 
     const artistsAggregatedData = (
         await Promise.all(mainAndRelatedArtists.map( async artist => {

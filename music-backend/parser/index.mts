@@ -2,32 +2,26 @@ import { extractAudioFeatures } from "./extractAudioFeatures.mts";
 import {
     RawArtistDataResponse,
     ListenbrainzTag,
+    RawArtistData
 } from './dataTypes.mts';
 
-//just for test
-import rawData from '../../artistdata.json' with { type: 'json' };
-
-export function parseForNeo4j(rawData: RawArtistDataResponse) {
-    const data = rawData.data;
-
+export function parseForNeo4j(data: RawArtistData) {
     return {
-        artist: {
-            mbid: data.artistMbid,
-            name: data.name,
-            spotifyPopularity: data.spotifyPopularity,
-            spotifyFollowers: data.spotifyFollowers,
-            spotifyGenres: data.spotifyGenres,
-            topLastfmGenres: data.lastfmTags
-                .filter(tag => tag.count > 5)
-                .slice(0, 5)
-                .map(tag => tag.name),
-            topListenbrainzTags: normalizeTagsByPopularity(
-                data.listenbrainzTags,
-                data.spotifyFollowers
-            ),
-            audioFeatures: extractAudioFeatures(data.lastfmTopTracksWithData)
-        },
-
+        mbid: data.artistMbid,
+        name: data.name,
+        spotifyPopularity: data.spotifyPopularity,
+        spotifyFollowers: data.spotifyFollowers,
+        spotifyGenres: data.spotifyGenres,
+        topLastfmGenres: data.lastfmTags
+            .filter(tag => tag.count > 5)
+            .slice(0, 5)
+            .map(tag => tag.name),
+        topListenbrainzTags: normalizeTagsByPopularity(
+            data.listenbrainzTags,
+            data.spotifyFollowers
+        ),
+        audioFeatures: extractAudioFeatures(data.lastfmTopTracksWithData),
+    
         similarityRelationships: data.lastfmSimilarArtists.map(similar => ({
             targetArtistMbid: similar.artistMbid,
             targetArtistName: similar.name,
@@ -35,7 +29,7 @@ export function parseForNeo4j(rawData: RawArtistDataResponse) {
             relationshipType: "SIMILAR_TO",
             source: "lastfm"
         }))
-    };
+    }
 }
 
 function normalizeTagsByPopularity(tags: ListenbrainzTag[], spotifyFollowers: number) {
@@ -62,7 +56,3 @@ function calculateTagConfidence(rawCount: number, popularityFactor: number) {
     if (normalizedCount >= 2) return 'medium';
     return 'low';
 }
-
-const parsedForNeo4j = parseForNeo4j(rawData);
-
-console.log(JSON.stringify(parsedForNeo4j, null, 2));

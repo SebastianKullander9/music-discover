@@ -3,9 +3,6 @@ import { ArtistDataType } from "./dataTypes.mts"
 import dotenv from "dotenv";
 dotenv.config({ path: "../.env" });
 
-//just for test
-import artistData from '../../parsedartistdata.json' with { type: 'json' };
-
 const neo4jUri = process.env.NEO4J_URI;
 const neo4jUsername = process.env.NEO4J_USERNAME;
 const neo4jPassword = process.env.NEO4J_PASSWORD;
@@ -15,14 +12,13 @@ if (!neo4jUri || !neo4jUsername || !neo4jPassword) {
     process.exit(1);
 }
 
-const driver = neo4j.driver(
+export const driver = neo4j.driver(
     neo4jUri,
     neo4j.auth.basic(neo4jUsername, neo4jPassword)
 );
 
-async function importArtist(artistData: ArtistDataType) {
+export async function importArtist(artistData: ArtistDataType) {
     const session = driver.session();
-    const { artist, similarityRelationships } = artistData;
 
     try {
          await session.run(
@@ -39,20 +35,20 @@ async function importArtist(artistData: ArtistDataType) {
                 a.audioAcousticness = $audioAcousticness
             `,
             {
-                mbid: artist.mbid,
-                name: artist.name,
-                spotifyPopularity: artist.spotifyPopularity,
-                spotifyFollowers: artist.spotifyFollowers,
-                spotifyGenres: artist.spotifyGenres,
-                topLastfmGenres: artist.topLastfmGenres,
-                audioTempo: artist.audioFeatures.tempo,
-                audioValence: artist.audioFeatures.valence,
-                audioDanceability: artist.audioFeatures.danceability,
-                audioAcousticness: artist.audioFeatures.acousticness,
+                mbid: artistData.mbid,
+                name: artistData.name,
+                spotifyPopularity: artistData.spotifyPopularity,
+                spotifyFollowers: artistData.spotifyFollowers,
+                spotifyGenres: artistData.spotifyGenres,
+                topLastfmGenres: artistData.topLastfmGenres,
+                audioTempo: artistData.audioFeatures.tempo,
+                audioValence: artistData.audioFeatures.valence,
+                audioDanceability: artistData.audioFeatures.danceability,
+                audioAcousticness: artistData.audioFeatures.acousticness,
             }
          );
 
-         for (const relation of similarityRelationships) {
+         for (const relation of artistData.similarityRelationships) {
             const targetMbid = relation.targetArtistMbid || `NAME::${relation.targetArtistName}`;
             await session.run(
                 `
@@ -62,8 +58,8 @@ async function importArtist(artistData: ArtistDataType) {
                 SET r.similarity = $similarity
                 `,
                 {
-                    targetId: relation.targetArtistMbid ? relation.targetArtistMbid : null,
-                    mainId: artist.mbid,
+                    targetId: targetMbid,
+                    mainId: artistData.mbid,
                     similarity: relation.similarity,
                     source: relation.source,
                 }
@@ -71,12 +67,7 @@ async function importArtist(artistData: ArtistDataType) {
          }
     } finally {
         await session.close();
+
+        return {"added": artistData.name}
     }
 }
-
-async function main(artistData: ArtistDataType) {
-    await importArtist(artistData);
-    await driver.close();
-}
-
-main(artistData);

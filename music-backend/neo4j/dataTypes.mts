@@ -1,5 +1,4 @@
 export interface ArtistDataType {
-    artist: {
         mbid: string;
         name: string;
         spotifyPopularity: number;
@@ -8,8 +7,7 @@ export interface ArtistDataType {
         topLastfmGenres: string[];
         topListenbrainzTags: ListenbrainzTag[];
         audioFeatures: AudioFeatures;
-    },
-    similarityRelationships: RelationshipType[];
+        similarityRelationships: RelationshipType[];
 }
 
 interface ListenbrainzTag {

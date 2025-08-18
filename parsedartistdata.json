@@ -1,0 +1,774 @@
+{
+  "artist": {
+    "mbid": "9fff2f8a-21e6-47de-a2b8-7f449929d43f",
+    "name": "Drake",
+    "spotifyPopularity": 99,
+    "spotifyFollowers": 100755742,
+    "spotifyGenres": [
+      "rap"
+    ],
+    "topLastfmGenres": [
+      "Hip-Hop",
+      "rap",
+      "rnb",
+      "hip hop",
+      "Canadian"
+    ],
+    "topListenbrainzTags": [
+      {
+        "name": "hip hop",
+        "rawWeight": 15,
+        "normalizedWeight": 7.471760758537101,
+        "confidence": "high"
+      },
+      {
+        "name": "r&b",
+        "rawWeight": 6,
+        "normalizedWeight": 2.98870430341484,
+        "confidence": "medium"
+      },
+      {
+        "name": "pop rap",
+        "rawWeight": 5,
+        "normalizedWeight": 2.490586919512367,
+        "confidence": "medium"
+      },
+      {
+        "name": "contemporary r&b",
+        "rawWeight": 5,
+        "normalizedWeight": 2.490586919512367,
+        "confidence": "medium"
+      },
+      {
+        "name": "alternative r&b",
+        "rawWeight": 4,
+        "normalizedWeight": 1.9924695356098936,
+        "confidence": "low"
+      },
+      {
+        "name": "trap",
+        "rawWeight": 3,
+        "normalizedWeight": 1.49435215170742,
+        "confidence": "low"
+      },
+      {
+        "name": "pop",
+        "rawWeight": 2,
+        "normalizedWeight": 0.9962347678049468,
+        "confidence": "low"
+      },
+      {
+        "name": "hip-hop",
+        "rawWeight": 1,
+        "normalizedWeight": 0.4981173839024734,
+        "confidence": "low"
+      },
+      {
+        "name": "hardcore hip hop",
+        "rawWeight": 1,
+        "normalizedWeight": 0.4981173839024734,
+        "confidence": "low"
+      },
+      {
+        "name": "trap rap",
+        "rawWeight": 1,
+        "normalizedWeight": 0.4981173839024734,
+        "confidence": "low"
+      }
+    ],
+    "audioFeatures": {
+      "danceability": 0.856920987368,
+      "valence": 0.375864338129705,
+      "acousticness": 0.04267157334835,
+      "tempo": 118.5
+    }
+  },
+  "similarityRelationships": [
+    {
+      "targetArtistMbid": "f23ef341-33bd-47c1-b83c-846a78581f05",
+      "targetArtistName": "PARTYNEXTDOOR",
+      "similarity": 1,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "081a2d60-9791-4e05-a075-f1890355eeee",
+      "targetArtistName": "DJ Khaled",
+      "similarity": 0.600025,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "Drake & Future",
+      "similarity": 0.594937,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "d8fd8d9b-473b-4f06-83c8-869b1bb9de89",
+      "targetArtistName": "Bryson Tiller",
+      "similarity": 0.477105,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "5b8ec72b-9e39-4a06-a2bf-964166b92a71",
+      "targetArtistName": "Tory Lanez",
+      "similarity": 0.473731,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "d42a5768-ada1-4fb6-85fd-f61aba6264e0",
+      "targetArtistName": "Lil Baby",
+      "similarity": 0.464476,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "48262e82-db9f-4a92-b650-dfef979b73ec",
+      "targetArtistName": "Future",
+      "similarity": 0.429087,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "31bcadcc-e1da-4cad-bec8-2f4f1d41b095",
+      "targetArtistName": "Meek Mill",
+      "similarity": 0.413831,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "Travi$ Scott",
+      "similarity": 0.409414,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "100b8734-f4f0-4536-9960-47f7c59d1b4c",
+      "targetArtistName": "Gunna",
+      "similarity": 0.382251,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "875203e1-8e58-4b86-8dcb-7190faf411c5",
+      "targetArtistName": "J. Cole",
+      "similarity": 0.381155,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "5721c227-4caf-48b1-bbfc-1a4ed3276963",
+      "targetArtistName": "Roddy Ricch",
+      "similarity": 0.3428,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "134cb0bc-06fa-42f7-8078-b0c858349975",
+      "targetArtistName": "Jack Harlow",
+      "similarity": 0.326981,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "201412c6-7ced-472b-87a9-9259ec3c07d3",
+      "targetArtistName": "Brent Faiyaz",
+      "similarity": 0.311302,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "3ba45541-87be-4631-896b-d148b7f70f00",
+      "targetArtistName": "Young Money",
+      "similarity": 0.308907,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "a0723a3c-4135-438e-85c5-012712144ede",
+      "targetArtistName": "Don Toliver",
+      "similarity": 0.305965,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "A Boogie wit da Hoodie",
+      "similarity": 0.30444,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "37b2cb82-ef79-4d46-a184-a549450aa231",
+      "targetArtistName": "21 Savage",
+      "similarity": 0.301109,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "Lil' Wayne",
+      "similarity": 0.287821,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "13bcb2bb-db37-4397-baf5-e0f085be2d64",
+      "targetArtistName": "Rick Ross",
+      "similarity": 0.285017,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "5aa55e7d-c077-4fbd-87a9-c572e513eb88",
+      "targetArtistName": "NAV",
+      "similarity": 0.276151,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "f50cee24-a799-45da-b65f-fb0874cd521d",
+      "targetArtistName": "Roy Woods",
+      "similarity": 0.274141,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "942a9807-9c1a-4a0e-a285-1fde2c5be9d1",
+      "targetArtistName": "Big Sean",
+      "similarity": 0.263955,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "800760de-bdf8-43a2-8fe0-44a2401a5515",
+      "targetArtistName": "Young Thug",
+      "similarity": 0.258459,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "Drake & 21 Savage",
+      "similarity": 0.256571,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "e6fdf3f9-8077-4126-b0cf-94da9a8b627e",
+      "targetArtistName": "Lil Tecca",
+      "similarity": 0.244857,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "0221734a-35a8-40f7-b5c5-2f61a200bc7c",
+      "targetArtistName": "Migos",
+      "similarity": 0.243528,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "c8b03190-306c-4120-bb0b-6f2ebfc06ea9",
+      "targetArtistName": "The Weeknd",
+      "similarity": 0.241186,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "f6d88fde-afb3-4716-be43-17b2e69cc408",
+      "targetArtistName": "4batz",
+      "similarity": 0.241133,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "JAY-Z",
+      "similarity": 0.238179,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "7bd66c18-cb33-49aa-9279-140acedbdb49",
+      "targetArtistName": "Ty Dolla $ign",
+      "similarity": 0.23651,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64",
+      "targetArtistName": "A$AP Rocky",
+      "similarity": 0.234721,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "2baf3276-ed6a-4349-8d2e-f4601e7b2167",
+      "targetArtistName": "Playboi Carti",
+      "similarity": 0.234319,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "45dc5f07-6609-4760-a933-8c9e0f858d05",
+      "targetArtistName": "French Montana",
+      "similarity": 0.230566,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "Kanye West",
+      "similarity": 0.227024,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "59db3d82-86ea-451f-881f-dffc8ec387c9",
+      "targetArtistName": "Metro Boomin",
+      "similarity": 0.224637,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "abaa7001-0d80-4e58-be5d-d2d246fd9d87",
+      "targetArtistName": "Majid Jordan",
+      "similarity": 0.219384,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "7e1e5648-1d6a-4248-975a-98603e781848",
+      "targetArtistName": "Polo G",
+      "similarity": 0.217534,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "f9788bf2-2317-4a9c-9649-6e168d2249e0",
+      "targetArtistName": "Young Stoner Life",
+      "similarity": 0.21643,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "8837b875-3689-4646-b3fd-d8b53815c7a8",
+      "targetArtistName": "Lil Uzi Vert",
+      "similarity": 0.215818,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "21 Savage & Metro Boomin",
+      "similarity": 0.214737,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "c234fa42-e6a6-443e-937e-2f4b073538a3",
+      "targetArtistName": "Chris Brown",
+      "similarity": 0.211993,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "Givēon",
+      "similarity": 0.211408,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "87ae83df-6173-40cc-a0f2-bad543faa6aa",
+      "targetArtistName": "DaBaby",
+      "similarity": 0.209452,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "a62e2b14-812a-41a1-884d-5a138705ad2d",
+      "targetArtistName": "BlocBoy JB",
+      "similarity": 0.208728,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "253c9ae7-850b-46be-8fbb-65e9fa621058",
+      "targetArtistName": "Pop Smoke",
+      "similarity": 0.208578,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "a668565b-41b8-44a8-9d5c-8e609dbf69fc",
+      "targetArtistName": "Lil Yachty",
+      "similarity": 0.205294,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "cb3d3e49-bf08-4cdb-bfa8-4dc7c458cea1",
+      "targetArtistName": "Rod Wave",
+      "similarity": 0.202994,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "dff0d392-4cd5-4052-9fbb-f485df3891e5",
+      "targetArtistName": "2 Chainz",
+      "similarity": 0.202858,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "c7740223-c657-4b0a-a0a4-b8349169e760",
+      "targetArtistName": "Dave",
+      "similarity": 0.201973,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "81d12ca7-5b89-4d21-8736-860b7400b4eb",
+      "targetArtistName": "Baby Keem",
+      "similarity": 0.200884,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "d44b92db-dd49-4636-abe8-7c381f90b7aa",
+      "targetArtistName": "Lil Tjay",
+      "similarity": 0.197084,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "c9cd225b-4883-428e-82c2-73e0b6282fb6",
+      "targetArtistName": "Lil Durk",
+      "similarity": 0.196316,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "JAY-Z & Kanye West",
+      "similarity": 0.19434,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "373a4c98-a46b-48e4-86ec-f6ca65b4f438",
+      "targetArtistName": "Chance the Rapper",
+      "similarity": 0.192692,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "412c47c5-ea27-4ce9-b0f3-e036da967519",
+      "targetArtistName": "Mustard",
+      "similarity": 0.190117,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "55814ae1-f5aa-4481-9878-05d9faf98c5a",
+      "targetArtistName": "JACKBOYS",
+      "similarity": 0.180473,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "285e1285-aecc-478f-a8da-0c8cf69e1217",
+      "targetArtistName": "Miguel",
+      "similarity": 0.179195,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "6d063567-dbf9-4b2a-bd11-1a4450cd93ca",
+      "targetArtistName": "Rich the Kid",
+      "similarity": 0.173483,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "aa5a6061-e60d-4a58-b9f6-c09de390bb2d",
+      "targetArtistName": "PnB Rock",
+      "similarity": 0.173171,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "6143403a-df6c-429e-8ee6-ef869896b0da",
+      "targetArtistName": "Quavo",
+      "similarity": 0.172219,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "127d8614-0876-4408-886c-6f110b047a78",
+      "targetArtistName": "YoungBoy Never Broke Again",
+      "similarity": 0.171715,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "07832b42-8826-4ab1-acd3-c49a2f595ffe",
+      "targetArtistName": "6LACK",
+      "similarity": 0.170426,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "Yung Bleu",
+      "similarity": 0.168732,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "02339890-0761-44b8-88f6-90977faf9ee5",
+      "targetArtistName": "Rich Gang",
+      "similarity": 0.168701,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "c78c3026-426b-4580-ab23-08490bb8b515",
+      "targetArtistName": "Rae Sremmurd",
+      "similarity": 0.16865,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "c0c401e0-eb84-4266-9ccb-9160988e7a8e",
+      "targetArtistName": "Offset",
+      "similarity": 0.167692,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "793e220b-64f8-46d9-954d-e033dbcfeef4",
+      "targetArtistName": "KIDS SEE GHOSTS",
+      "similarity": 0.167328,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "938bbcc7-3c04-4209-85fb-fa8b3dcd2672",
+      "targetArtistName": "A$AP Mob",
+      "similarity": 0.16703,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "14ecd19f-7121-4192-8549-e5056241a42f",
+      "targetArtistName": "Pusha T",
+      "similarity": 0.165992,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "e34e41f2-f480-45d3-8190-a3ce5ab34fab",
+      "targetArtistName": "Wale",
+      "similarity": 0.164406,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "d616b606-cf6a-4b6e-ab0f-e253b8db6610",
+      "targetArtistName": "JID",
+      "similarity": 0.163218,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "5ec1ecc6-4535-4911-a27a-e26343f4a189",
+      "targetArtistName": "Kodak Black",
+      "similarity": 0.161918,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "9167f739-da47-4495-9d63-9c13b40114ac",
+      "targetArtistName": "Summer Walker",
+      "similarity": 0.16159,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "e520459c-dff4-491d-a6e4-c97be35e0044",
+      "targetArtistName": "Frank Ocean",
+      "similarity": 0.16149,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "Donda",
+      "similarity": 0.160832,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "a17ce9c3-8f6f-4dcc-a1b7-2a04ab9e31f0",
+      "targetArtistName": "Swae Lee",
+      "similarity": 0.160365,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "8032cf05-d916-4b2a-9c53-6e75d4a24bd8",
+      "targetArtistName": "Trippie Redd",
+      "similarity": 0.159301,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "0eea08e2-1363-4b36-bbe8-9691ae3892b6",
+      "targetArtistName": "Nardo Wick",
+      "similarity": 0.158631,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "Huncho Jack",
+      "similarity": 0.158627,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "1c009a08-74d1-4682-bc56-8bfbe9e66b62",
+      "targetArtistName": "Jeremih",
+      "similarity": 0.158047,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "cf41881c-9b8a-4ca1-82a6-db00a933628d",
+      "targetArtistName": "KYLE",
+      "similarity": 0.155524,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "58daf317-be5f-439f-a04d-0d6727f1a3b2",
+      "targetArtistName": "¥$",
+      "similarity": 0.153805,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "d2a36c92-546b-4b81-b31b-23e21d2ea6ee",
+      "targetArtistName": "Nemzzz",
+      "similarity": 0.153536,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "4d7304f6-7fe3-4959-9d98-01a5af84afe6",
+      "targetArtistName": "Trey Songz",
+      "similarity": 0.152613,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "8971fa37-c402-474a-b897-e2bbc145b59d",
+      "targetArtistName": "Moneybagg Yo",
+      "similarity": 0.152053,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "a0e8a1b1-5f8f-475a-a253-17415c17d0ff",
+      "targetArtistName": "Mac Miller",
+      "similarity": 0.150906,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "994a4bd6-584e-40c8-a8d7-5fdc3b6db8b2",
+      "targetArtistName": "Cordae",
+      "similarity": 0.149882,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "1036b808-f58c-4a3e-b461-a2c4492ecf1b",
+      "targetArtistName": "Nicki Minaj",
+      "similarity": 0.149777,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistName": "Dej Loaf",
+      "similarity": 0.149765,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "babeb28b-5142-4af9-a3c5-9987315f1fc3",
+      "targetArtistName": "Tee Grizzley",
+      "similarity": 0.149266,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "2b4d4837-37d1-4a1b-b670-324d9a094112",
+      "targetArtistName": "Fivio Foreign",
+      "similarity": 0.148998,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "96800e05-9924-4321-859a-76e0d4750f2f",
+      "targetArtistName": "Smino",
+      "similarity": 0.148034,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "e3492ea0-5997-4241-a7bf-2fd7fb1bfad1",
+      "targetArtistName": "Fetty Wap",
+      "similarity": 0.146508,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "59d6cea7-3771-4ce6-8c02-395ac5ba927a",
+      "targetArtistName": "YNW Melly",
+      "similarity": 0.14646,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "9757ae7d-44b1-4d63-81ce-b463fe27b9ae",
+      "targetArtistName": "Joey Bada$$",
+      "similarity": 0.1458,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "f7a94446-aa3f-41e6-b3d0-46dd695d7d6e",
+      "targetArtistName": "Dreamville",
+      "similarity": 0.145644,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "5fc55ebf-21bd-4eda-954c-dd250132331e",
+      "targetArtistName": "Mariah the Scientist",
+      "similarity": 0.145082,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "ba7871a1-5806-49ab-bde0-8ab0f7e9bffa",
+      "targetArtistName": "Jaden",
+      "similarity": 0.144732,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    },
+    {
+      "targetArtistMbid": "3414d446-735a-443c-931f-10634f57e5b9",
+      "targetArtistName": "Usher",
+      "similarity": 0.144483,
+      "relationshipType": "SIMILAR_TO",
+      "source": "lastfm"
+    }
+  ]
+}

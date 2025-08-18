@@ -65,4 +65,4 @@ function calculateTagConfidence(rawCount: number, popularityFactor: number) {
 
 const parsedForNeo4j = parseForNeo4j(rawData);
 
-console.log(parsedForNeo4j)
+console.log(JSON.stringify(parsedForNeo4j, null, 2));

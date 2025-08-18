@@ -1,5 +1,8 @@
+import pLimit from "p-limit";
+const limit = pLimit(2);
+
 const BASE_URL = "http://localhost:3000";
-const RELATED_LIMIT = 15;
+const RELATED_LIMIT = 50;
 
 const BATCH_SIZE = 25;
 const ACOUSTICBRAINZ_BASE_URL = "https://acousticbrainz.org/api/v1/high-level";
@@ -12,6 +15,13 @@ type Song = {
     name: string;
     trackMbid?: string;
 }
+
+type SimilarArtist = {
+    name: string;
+    artistMbid: string;
+    [key: string]: unknown;
+};
+
 
 async function fetchJSON(url: string) {
     const response = await fetch(url, { method: "GET" });
@@ -32,6 +42,30 @@ async function fetchBatch(trackMbids: string[]): Promise<ApiTrackData> {
     }
 
     return response.json();
+}
+
+async function fetchWithRateLimit(url: string, retries = 3): Promise<any> {
+    for (let attempt = 0; attempt <= retries; attempt++) {
+        const resp = await fetch(url);
+
+        if (resp.ok) {
+            return resp.json();
+        }
+
+        if (resp.status === 429) {
+            const waitSec = parseInt(resp.headers.get("X-RateLimit-Reset-In") || "2", 10);
+            console.warn(`Rate limited. Waiting ${waitSec}s before retry...`);
+            await new Promise(res => setTimeout(res, waitSec * 1000));
+            continue;
+        }
+
+        if (attempt < retries) {
+            await new Promise(res => setTimeout(res, 500 * 2 ** attempt));
+            continue;
+        }
+
+        throw new Error(`Failed to fetch ${url}: ${resp.status}`);
+    }
 }
 
 async function getAllSongData(songs: Song[]): Promise<{ mbid: string; name?: string; data: any }[]> {
@@ -69,41 +103,49 @@ export async function aggregateArtistData(name: string) {
     if (!mainArtist) throw new Error("artist not found");
 
     //get main artists related artists
-    const relatedData = await fetchJSON(`${BASE_URL}/listenbrainz/get-artists-related-artists?id=${mainArtist.id}`);
-    const relatedArtists = (relatedData.data.items as { name: string, artist_mbid: string}[])
+    const lastfmSimilarArtists = await fetchJSON(`${BASE_URL}/lastfm/get-similar-artists?mbid=${mainArtist.id}`);
+    const similarArtistsLastfm: SimilarArtist[] = lastfmSimilarArtists.data;
+    const strippedSimilarArtistsLastFm: SimilarArtist[] = (similarArtistsLastfm as SimilarArtist[])
+        .filter((a): a is { name: string; artistMbid: string } =>
+            typeof a.artistMbid === "string" && a.artistMbid.trim() !== ""
+        )
         .slice(0, RELATED_LIMIT)
-        .map(a => ({ name: a.name, artistMbid: a.artist_mbid }));
-    
+        .map(a => ({ name: a.name, artistMbid: a.artistMbid }));
+
     const mainAndRelatedArtists = [
         { name: mainArtist.name, artistMbid: mainArtist.id },
-        ...relatedArtists
+        ...strippedSimilarArtistsLastFm
     ]
 
+    let i = 0;
     const artistsAggregatedData = (
-        await Promise.all(mainAndRelatedArtists.map( async artist => {
-            try {
+        await Promise.all(mainAndRelatedArtists.map( artist =>
+            limit(async () => {
+                try {
                 //spotify data
-                const spotifyData = await fetchJSON(`${BASE_URL}/spotify/get-artist-by-name?name=${encodeURIComponent(artist.name)}`);
+                const spotifyData = await fetchWithRateLimit(`${BASE_URL}/spotify/get-artist-by-name?name=${encodeURIComponent(artist.name)}`);
                 const artistObjectSpotify = spotifyData.data;
 
                 //listenbrainz data
-                const listenbrainzData = await fetchJSON(`${BASE_URL}/listenbrainz/get-artist-by-name?name=${encodeURIComponent(artist.name)}`);
+                const listenbrainzData = await fetchWithRateLimit(`${BASE_URL}/listenbrainz/get-artist-by-name?name=${encodeURIComponent(artist.name)}`);
                 const artistObjectListenbrainz = listenbrainzData.data;//VALDATE THAT ITS THE EXPECTED ARTIST BEFORE ADDING
 
                 //lastfm data
                 //similar artists
-                const lastfmSimilarArtists = await fetchJSON(`${BASE_URL}/lastfm/get-similar-artists?mbid=${artist.artistMbid}`);
+                const lastfmSimilarArtists = await fetchWithRateLimit(`${BASE_URL}/lastfm/get-similar-artists?mbid=${artist.artistMbid}`);
                 const similarArtistsLastfm = lastfmSimilarArtists.data;
 
                 //artists top tags
-                const lastfmTopTags = await fetchJSON(`${BASE_URL}/lastfm/get-artist-top-tags?mbid=${artist.artistMbid}`);
+                const lastfmTopTags = await fetchWithRateLimit(`${BASE_URL}/lastfm/get-artist-top-tags?mbid=${artist.artistMbid}`);
                 const lastfmTopTagsData = lastfmTopTags.data;
 
                 //artists top tracks
-                const lastfmTopTracks = await fetchJSON(`${BASE_URL}/lastfm/get-artist-top-tracks?mbid=${artist.artistMbid}`);
+                const lastfmTopTracks = await fetchWithRateLimit(`${BASE_URL}/lastfm/get-artist-top-tracks?mbid=${artist.artistMbid}`);
                 const lastfmTopTracksData = lastfmTopTracks.data;
                 const lastfmTopTracksWithData = await getAllSongData(lastfmTopTracksData);
 
+                console.log("RETURNED ARTISTSSSSSS: ", i)
+                i++;
                 return {
                     artistMbid: artist.artistMbid,
                     name: artist.name,
@@ -119,9 +161,10 @@ export async function aggregateArtistData(name: string) {
                 console.error("something went wrong")
                 return null;
             }
-        }))
+            })
+            
+        ))
     )
 
     return artistsAggregatedData;
-
 }

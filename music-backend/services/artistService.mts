@@ -1,5 +1,5 @@
 import { parseForNeo4j } from "../parser/index.mts";
-import { driver, importArtist } from "../neo4j/driver.mts";
+import { importArtist, importArtistFull, computeAudioSimilarity } from "../neo4j/driver.mts";
 import { ArtistDataType } from "../neo4j/dataTypes.mts";
 
 type AggregatedArtist = {
@@ -20,20 +20,20 @@ export async function importArtists(name: string) {
     });
 
     const data = await response.json();
-    
     const artists = Object.values(data.data) as (AggregatedArtist | null)[];
     
     let addedArtists = [];
     for (const artist of artists) {
         if (!artist) continue;
-
         let parsedArtistsData = parseForNeo4j(artist);
 
-        const added = await importArtist(parsedArtistsData as ArtistDataType);
+        const added = await importArtistFull(parsedArtistsData as ArtistDataType);
 
         addedArtists.push(added)
 
     }
+
+    await computeAudioSimilarity();
 
     return addedArtists;
 }

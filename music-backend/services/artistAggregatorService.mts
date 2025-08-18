@@ -117,7 +117,6 @@ export async function aggregateArtistData(name: string) {
         ...strippedSimilarArtistsLastFm
     ]
 
-    let i = 0;
     const artistsAggregatedData = (
         await Promise.all(mainAndRelatedArtists.map( artist =>
             limit(async () => {
@@ -144,8 +143,6 @@ export async function aggregateArtistData(name: string) {
                 const lastfmTopTracksData = lastfmTopTracks.data;
                 const lastfmTopTracksWithData = await getAllSongData(lastfmTopTracksData);
 
-                console.log("RETURNED ARTISTSSSSSS: ", i)
-                i++;
                 return {
                     artistMbid: artist.artistMbid,
                     name: artist.name,

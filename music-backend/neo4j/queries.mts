@@ -132,9 +132,3 @@ export async function getTagSharedArtistsGraph(artistName: string) {
         await session.close();
     }
 }
-
-
-(async () => {
-    const graph = await getTagSharedArtistsGraph("Kendrick Lamar");
-    console.log(JSON.stringify(graph, null, 2));
-})();

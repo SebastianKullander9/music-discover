@@ -1,6 +1,6 @@
 "use client";
 import * as d3 from "d3";
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import nodeData from "../../public/nodetagdata.json";
 
 type Node = { 
@@ -18,10 +18,25 @@ type Edge = {
 };
 
 export default function Graph() {
-    const data = nodeData;
+    const [data, setData] = useState();
+    //const data = nodeData;
     const ref = useRef<SVGSVGElement | null>(null);
 
     useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch("http://localhost:3001/query/get-similar-artists-graph?name=JID", {
+                method: "GET",
+            });
+
+            const data = await response.json();
+            setData(data.data);
+        }
+        
+        fetchData();
+    }, [])
+
+    useEffect(() => {
+        if (!data) return;
         if (!ref.current) return;
 
         const svg = d3.select<SVGSVGElement, unknown>(ref.current);
@@ -80,7 +95,7 @@ export default function Graph() {
 
         node
             .append("text")
-            .text(d => d.label) // <-- use label now
+            .text(d => d.label)
             .attr("x", 25)
             .attr("y", 5)
             .style("font-size", "12px");

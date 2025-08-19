@@ -60,7 +60,7 @@ process.on('SIGTERM', shutdown);
 
 async function start() {
     try {
-        await fastify.listen({ port: 3000 });
+        await fastify.listen({ port: 3001 });
     } catch (err) {
         fastify.log.error(err);
         process.exit(1);

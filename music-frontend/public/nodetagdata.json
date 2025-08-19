@@ -1,0 +1,372 @@
+{
+  "nodes": [
+    {
+      "id": "Kendrick Lamar",
+      "label": "Kendrick Lamar"
+    },
+    {
+      "id": "McKinley Dixon",
+      "label": "McKinley Dixon"
+    },
+    {
+      "id": "WESTSIDE BOOGIE",
+      "label": "WESTSIDE BOOGIE"
+    },
+    {
+      "id": "Common",
+      "label": "Common"
+    },
+    {
+      "id": "Clipse",
+      "label": "Clipse"
+    },
+    {
+      "id": "Nas",
+      "label": "Nas"
+    },
+    {
+      "id": "Denzel Curry",
+      "label": "Denzel Curry"
+    },
+    {
+      "id": "Little Simz",
+      "label": "Little Simz"
+    },
+    {
+      "id": "A$AP Rocky",
+      "label": "A$AP Rocky"
+    },
+    {
+      "id": "KIDS SEE GHOSTS",
+      "label": "KIDS SEE GHOSTS"
+    },
+    {
+      "id": "Earl Sweatshirt",
+      "label": "Earl Sweatshirt"
+    },
+    {
+      "id": "Lupe Fiasco",
+      "label": "Lupe Fiasco"
+    },
+    {
+      "id": "Pusha T",
+      "label": "Pusha T"
+    },
+    {
+      "id": "Black Hippy",
+      "label": "Black Hippy"
+    },
+    {
+      "id": "Chance the Rapper",
+      "label": "Chance the Rapper"
+    },
+    {
+      "id": "Vince Staples",
+      "label": "Vince Staples"
+    },
+    {
+      "id": "Cordae",
+      "label": "Cordae"
+    },
+    {
+      "id": "JID",
+      "label": "JID"
+    },
+    {
+      "id": "Joey Bada$$",
+      "label": "Joey Bada$$"
+    },
+    {
+      "id": "Jay Rock",
+      "label": "Jay Rock"
+    },
+    {
+      "id": "Childish Gambino",
+      "label": "Childish Gambino"
+    },
+    {
+      "id": "ScHoolboy Q",
+      "label": "ScHoolboy Q"
+    },
+    {
+      "id": "Metro Boomin",
+      "label": "Metro Boomin"
+    },
+    {
+      "id": "Tyler, The Creator",
+      "label": "Tyler, The Creator"
+    },
+    {
+      "id": "J. Cole",
+      "label": "J. Cole"
+    },
+    {
+      "id": "Isaiah Rashad",
+      "label": "Isaiah Rashad"
+    },
+    {
+      "id": "21 Savage",
+      "label": "21 Savage"
+    },
+    {
+      "id": "Mac Miller",
+      "label": "Mac Miller"
+    },
+    {
+      "id": "Baby Keem",
+      "label": "Baby Keem"
+    }
+  ],
+  "edges": [
+    {
+      "from": "Kendrick Lamar",
+      "to": "McKinley Dixon",
+      "similarity": 1
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "McKinley Dixon",
+      "similarity": 0.7667918984250012
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "WESTSIDE BOOGIE",
+      "similarity": 0.7309419316511587
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Common",
+      "similarity": 0.6633561099906892
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Clipse",
+      "similarity": 0.6534282197742579
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Nas",
+      "similarity": 0.6244785701772924
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Denzel Curry",
+      "similarity": 0.6189642910431842
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Little Simz",
+      "similarity": 0.6145257342632853
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "A$AP Rocky",
+      "similarity": 0.6102391896478456
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "KIDS SEE GHOSTS",
+      "similarity": 0.5977580714645372
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Earl Sweatshirt",
+      "similarity": 0.5930489020046033
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Lupe Fiasco",
+      "similarity": 0.5824234978302444
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Pusha T",
+      "similarity": 0.5801008346099464
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Black Hippy",
+      "similarity": 0.5753535089439187
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Chance the Rapper",
+      "similarity": 0.5681132987916143
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Vince Staples",
+      "similarity": 0.5594978979000045
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Cordae",
+      "similarity": 0.5578958185611058
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Common",
+      "similarity": 0.5569829787158586
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "JID",
+      "similarity": 0.5566139553938934
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Joey Bada$$",
+      "similarity": 0.5556819594365243
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Jay Rock",
+      "similarity": 0.5444260497233391
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Childish Gambino",
+      "similarity": 0.538383401769591
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Lupe Fiasco",
+      "similarity": 0.5351962651097937
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "ScHoolboy Q",
+      "similarity": 0.5345759176004796
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Metro Boomin",
+      "similarity": 0.5326587713092473
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Tyler, The Creator",
+      "similarity": 0.5320343899195872
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "WESTSIDE BOOGIE",
+      "similarity": 0.531058264802424
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Denzel Curry",
+      "similarity": 0.5274846180190376
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "J. Cole",
+      "similarity": 0.5234345535496889
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Cordae",
+      "similarity": 0.5206357957732544
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Isaiah Rashad",
+      "similarity": 0.5197926139002943
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Cordae",
+      "similarity": 0.517395793791702
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "21 Savage",
+      "similarity": 0.5171623023479548
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Mac Miller",
+      "similarity": 0.5133145266814902
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "ScHoolboy Q",
+      "similarity": 0.5131127665422099
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Common",
+      "similarity": 0.5128770462360508
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Baby Keem",
+      "similarity": 0.511776311103186
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Denzel Curry",
+      "similarity": 0.5111001989699367
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Chance the Rapper",
+      "similarity": 0.5060077059009556
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Denzel Curry",
+      "similarity": 0.5056387259535697
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Pusha T",
+      "similarity": 0.5052247097287264
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Common",
+      "similarity": 0.505093646386673
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Vince Staples",
+      "similarity": 0.5046822596099387
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Baby Keem",
+      "similarity": 0.5025898712357667
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Chance the Rapper",
+      "similarity": 0.502243730574249
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Lupe Fiasco",
+      "similarity": 0.5014625274523288
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Chance the Rapper",
+      "similarity": 0.5013027367425723
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Cordae",
+      "similarity": 0.5011957838839405
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "Earl Sweatshirt",
+      "similarity": 0.5007670489721446
+    },
+    {
+      "from": "Kendrick Lamar",
+      "to": "KIDS SEE GHOSTS",
+      "similarity": 0.5
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import {
 } from './dataTypes.mts';
 
 export function parseForNeo4j(data: RawArtistData) {
+
     return {
         mbid: data.artistMbid,
         name: data.name,

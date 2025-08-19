@@ -1,18 +1,20 @@
 "use client";
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
-import nodeData from "../../public/nodedata.json";
+import nodeData from "../../public/nodetagdata.json";
 
-type Node = { id: string; name: string; x?: number; y?: number; fx?: number | null; fy?: number | null };
-type Edge = {
-    source: string | Node;
-    target: string | Node;
-    similarity: number;
+type Node = { 
+    id: string; 
+    label: string; 
+    x?: number; 
+    y?: number; 
+    fx?: number | null; 
+    fy?: number | null 
 };
-
-type GraphData = {
-    nodes: Node[];
-    edges: Edge[];
+type Edge = { 
+    source: string | Node; 
+    target: string | Node; 
+    similarity: number 
 };
 
 export default function Graph() {
@@ -23,20 +25,21 @@ export default function Graph() {
         if (!ref.current) return;
 
         const svg = d3.select<SVGSVGElement, unknown>(ref.current);
-        svg.selectAll("*").remove(); // cleanup
+        svg.selectAll("*").remove();
 
         const width = window.innerWidth;
         const height = window.innerHeight;
 
+        const nodesMap = new Map(data.nodes.map(n => [n.id, n]));
+        const edges: Edge[] = data.edges.map(e => ({
+            source: nodesMap.get(e.from)!,
+            target: nodesMap.get(e.to)!,
+            similarity: e.similarity
+        }));
+
         const simulation = d3
             .forceSimulation<Node>(data.nodes)
-            .force(
-                "link",
-                d3
-                    .forceLink<Node, Edge>(data.edges)
-                    .id((d) => d.id)
-                    .distance((d) => 400 * (1 - d.similarity))
-            )
+            .force("link", d3.forceLink<Node, Edge>(edges).id(d => d.id).distance(d => 400 * (1 - d.similarity)))
             .force("charge", d3.forceManyBody().strength(-400))
             .force("center", d3.forceCenter(width / 2, height / 2));
 
@@ -45,9 +48,9 @@ export default function Graph() {
             .attr("stroke", "#999")
             .attr("stroke-opacity", 0.6)
             .selectAll("line")
-            .data(data.edges)
+            .data(edges)
             .join("line")
-            .attr("stroke-width", (d) => d.similarity * 3);
+            .attr("stroke-width", d => d.similarity * 3);
 
         const node = svg
             .append("g")
@@ -73,26 +76,23 @@ export default function Graph() {
                     })
             );
 
-        node
-            .append("circle")
-            .attr("r", 20)
-            .attr("fill", "#69b3a2");
+        node.append("circle").attr("r", 20).attr("fill", "#69b3a2");
 
         node
             .append("text")
-            .text((d) => d.name)
+            .text(d => d.label) // <-- use label now
             .attr("x", 25)
             .attr("y", 5)
             .style("font-size", "12px");
 
         simulation.on("tick", () => {
             link
-                .attr("x1", (d) => (d.source as Node).x!)
-                .attr("y1", (d) => (d.source as Node).y!)
-                .attr("x2", (d) => (d.target as Node).x!)
-                .attr("y2", (d) => (d.target as Node).y!);
+                .attr("x1", d => (d.source as Node).x!)
+                .attr("y1", d => (d.source as Node).y!)
+                .attr("x2", d => (d.target as Node).x!)
+                .attr("y2", d => (d.target as Node).y!);
 
-            node.attr("transform", (d) => `translate(${d.x},${d.y})`);
+            node.attr("transform", d => `translate(${d.x},${d.y})`);
         });
     }, [data]);
 

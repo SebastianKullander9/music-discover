@@ -1,361 +1,226 @@
 {
    "nodes":[
       {
-         "id":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "name":"Kendrick Lamar"
+         "id":"Denzel Curry",
+         "label":"Denzel Curry"
       },
       {
-         "id":"d616b606-cf6a-4b6e-ab0f-e253b8db6610",
-         "name":"JID"
+         "id":"Future",
+         "label":"Future"
       },
       {
-         "id":"f6beac20-5dfe-4d1f-ae02-0b0a740aafd6",
-         "name":"Tyler, The Creator"
+         "id":"Eminem",
+         "label":"Eminem"
       },
       {
-         "id":"9880800a-f6f8-4f8f-a00e-b4b664776c0c",
-         "name":"Jay Rock"
+         "id":"The Notorious B.I.G.",
+         "label":"The Notorious B.I.G."
       },
       {
-         "id":"81d12ca7-5b89-4d21-8736-860b7400b4eb",
-         "name":"Baby Keem"
+         "id":"Dr. Dre",
+         "label":"Dr. Dre"
       },
       {
-         "id":"875203e1-8e58-4b86-8dcb-7190faf411c5",
-         "name":"J. Cole"
+         "id":"Vince Staples",
+         "label":"Vince Staples"
       },
       {
-         "id":"5f95440d-7737-4a36-9bcf-c05337f7129b",
-         "name":"Denzel Curry"
+         "id":"A Tribe Called Quest",
+         "label":"A Tribe Called Quest"
       },
       {
-         "id":"bce6d667-cde8-485e-b078-c0a05adea36d",
-         "name":"ScHoolboy Q"
+         "id":"Mobb Deep",
+         "label":"Mobb Deep"
       },
       {
-         "id":"6fc5c0c6-bf05-4b29-bda0-5fa6cc863785",
-         "name":"Black Hippy"
+         "id":"Kendrick Lamar",
+         "label":"Kendrick Lamar"
       },
       {
-         "id":"9757ae7d-44b1-4d63-81ce-b463fe27b9ae",
-         "name":"Joey Bada$$"
+         "id":"Common",
+         "label":"Common"
       },
       {
-         "id":"14ecd19f-7121-4192-8549-e5056241a42f",
-         "name":"Pusha T"
+         "id":"Madvillain",
+         "label":"Madvillain"
       },
       {
-         "id":"78e854b8-9713-4ff2-9218-6b3784893bff",
-         "name":"Vince Staples"
+         "id":"Saba",
+         "label":"Saba"
       },
       {
-         "id":"25b7b584-d952-4662-a8b9-dd8cdfbfeb64",
-         "name":"A$AP Rocky"
+         "id":"Tyler, The Creator",
+         "label":"Tyler, The Creator"
       },
       {
-         "id":"793e220b-64f8-46d9-954d-e033dbcfeef4",
-         "name":"KIDS SEE GHOSTS"
+         "id":"Nas",
+         "label":"Nas"
       },
       {
-         "id":"cfbc0924-0035-4d6c-8197-f024653af823",
-         "name":"Nas"
+         "id":"Clipse",
+         "label":"Clipse"
       },
       {
-         "id":"382f1005-e9ab-4684-afd4-0bdae4ee37f2",
-         "name":"2Pac"
+         "id":"2Pac",
+         "label":"2Pac"
       },
       {
-         "id":"73fdb566-a9b1-494c-9f32-51768ec9fd27",
-         "name":"OutKast"
+         "id":"BROCKHAMPTON",
+         "label":"BROCKHAMPTON"
       },
       {
-         "id":"4e024037-14b7-4aea-99ad-c6ace63b9620",
-         "name":"Madvillain"
+         "id":"Mac Miller",
+         "label":"Mac Miller"
       },
       {
-         "id":"37547347-ea75-45fa-9766-ff36b44d8147",
-         "name":"Isaiah Rashad"
+         "id":"Baby Keem",
+         "label":"Baby Keem"
       },
       {
-         "id":"7fb57fba-a6ef-44c2-abab-2fa3bdee607e",
-         "name":"Childish Gambino"
+         "id":"A$AP Rocky",
+         "label":"A$AP Rocky"
       },
       {
-         "id":"a9dd15ac-c1bf-4c11-925c-c5a68635d0f2",
-         "name":"Ray Vaughn"
+         "id":"Childish Gambino",
+         "label":"Childish Gambino"
       },
       {
-         "id":"a0e8a1b1-5f8f-475a-a253-17415c17d0ff",
-         "name":"Mac Miller"
+         "id":"Little Simz",
+         "label":"Little Simz"
       },
       {
-         "id":"e6424fa5-08d3-41c6-96f3-8549f733708c",
-         "name":"Clipse"
+         "id":"Joey Bada$$",
+         "label":"Joey Bada$$"
       },
       {
-         "id":"8b22acd6-20e6-4463-a75c-c14b5cfdb666",
-         "name":"Earl Sweatshirt"
+         "id":"Lupe Fiasco",
+         "label":"Lupe Fiasco"
       },
       {
-         "id":"42234de3-79be-4e2f-9366-00cd57da2f82",
-         "name":"Saba"
-      },
-      {
-         "id":"cf15719f-51f9-4db8-a15d-5eed9664ce69",
-         "name":"Lupe Fiasco"
-      },
-      {
-         "id":"994a4bd6-584e-40c8-a8d7-5fdc3b6db8b2",
-         "name":"Cordae"
-      },
-      {
-         "id":"f7a94446-aa3f-41e6-b3d0-46dd695d7d6e",
-         "name":"Dreamville"
-      },
-      {
-         "id":"188711ed-c99b-439c-844a-ca831f63a727",
-         "name":"MF DOOM"
-      },
-      {
-         "id":"21645c31-fe1c-45a4-955c-3e172b12c3f9",
-         "name":"Freddie Gibbs"
-      },
-      {
-         "id":"3cdb40fe-a63e-4bb9-b40d-17cda5f50979",
-         "name":"Little Simz"
-      },
-      {
-         "id":"5f6ab597-f57a-40da-be9e-adad48708203",
-         "name":"Dr. Dre"
-      },
-      {
-         "id":"02cd2007-b4ba-4eaa-9798-b26a1c851ce5",
-         "name":"jev."
-      },
-      {
-         "id":"59db3d82-86ea-451f-881f-dffc8ec387c9",
-         "name":"Metro Boomin"
-      },
-      {
-         "id":"d5d97b2b-b83b-4976-814a-056d9076c8c3",
-         "name":"The Notorious B.I.G."
-      },
-      {
-         "id":"9689aa5a-4471-4fb4-9721-07cecda0fa9f",
-         "name":"A Tribe Called Quest"
-      },
-      {
-         "id":"9f75277c-b283-4846-ac8c-f932255cd0ac",
-         "name":"Doechii"
-      },
-      {
-         "id":"37b2cb82-ef79-4d46-a184-a549450aa231",
-         "name":"21 Savage"
-      },
-      {
-         "id":"48262e82-db9f-4a92-b650-dfef979b73ec",
-         "name":"Future"
-      },
-      {
-         "id":"b95ce3ff-3d05-4e87-9e01-c97b66af13d4",
-         "name":"Eminem"
+         "id":"J. Cole",
+         "label":"J. Cole"
       }
    ],
    "edges":[
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":1,
-         "target":"d616b606-cf6a-4b6e-ab0f-e253b8db6610"
+         "from":"Denzel Curry",
+         "to":"Future",
+         "similarity":0.9270945559996444
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.948294,
-         "target":"f6beac20-5dfe-4d1f-ae02-0b0a740aafd6"
+         "from":"Denzel Curry",
+         "to":"Eminem",
+         "similarity":0.91601819227527
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.861369,
-         "target":"9880800a-f6f8-4f8f-a00e-b4b664776c0c"
+         "from":"Denzel Curry",
+         "to":"The Notorious B.I.G.",
+         "similarity":0.9077642656827146
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.792265,
-         "target":"81d12ca7-5b89-4d21-8736-860b7400b4eb"
+         "from":"Denzel Curry",
+         "to":"Dr. Dre",
+         "similarity":0.9024993142965171
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.682863,
-         "target":"875203e1-8e58-4b86-8dcb-7190faf411c5"
+         "from":"Denzel Curry",
+         "to":"Vince Staples",
+         "similarity":0.8918823882844538
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.682737,
-         "target":"5f95440d-7737-4a36-9bcf-c05337f7129b"
+         "from":"Denzel Curry",
+         "to":"A Tribe Called Quest",
+         "similarity":0.8790539412106129
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.669492,
-         "target":"bce6d667-cde8-485e-b078-c0a05adea36d"
+         "from":"Denzel Curry",
+         "to":"Mobb Deep",
+         "similarity":0.8463375432844905
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.656155,
-         "target":"6fc5c0c6-bf05-4b29-bda0-5fa6cc863785"
+         "from":"Denzel Curry",
+         "to":"Kendrick Lamar",
+         "similarity":0.8408746692800374
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.625663,
-         "target":"9757ae7d-44b1-4d63-81ce-b463fe27b9ae"
+         "from":"Denzel Curry",
+         "to":"Common",
+         "similarity":0.8390873858565302
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.619458,
-         "target":"14ecd19f-7121-4192-8549-e5056241a42f"
+         "from":"Denzel Curry",
+         "to":"Madvillain",
+         "similarity":0.8263241552055574
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.574039,
-         "target":"78e854b8-9713-4ff2-9218-6b3784893bff"
+         "from":"Denzel Curry",
+         "to":"Saba",
+         "similarity":0.8262583996046974
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.531209,
-         "target":"25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+         "from":"Denzel Curry",
+         "to":"Tyler, The Creator",
+         "similarity":0.8194742800027212
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.515619,
-         "target":"793e220b-64f8-46d9-954d-e033dbcfeef4"
+         "from":"Denzel Curry",
+         "to":"Nas",
+         "similarity":0.807284498208893
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.513685,
-         "target":"cfbc0924-0035-4d6c-8197-f024653af823"
+         "from":"Denzel Curry",
+         "to":"Clipse",
+         "similarity":0.804243837954865
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.493645,
-         "target":"382f1005-e9ab-4684-afd4-0bdae4ee37f2"
+         "from":"Denzel Curry",
+         "to":"2Pac",
+         "similarity":0.7980711030404647
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.473791,
-         "target":"73fdb566-a9b1-494c-9f32-51768ec9fd27"
+         "from":"Denzel Curry",
+         "to":"BROCKHAMPTON",
+         "similarity":0.7970307300451839
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.463168,
-         "target":"4e024037-14b7-4aea-99ad-c6ace63b9620"
+         "from":"Denzel Curry",
+         "to":"Mac Miller",
+         "similarity":0.7671859029563451
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.449533,
-         "target":"37547347-ea75-45fa-9766-ff36b44d8147"
+         "from":"Denzel Curry",
+         "to":"Baby Keem",
+         "similarity":0.7501252575886481
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.448109,
-         "target":"7fb57fba-a6ef-44c2-abab-2fa3bdee607e"
+         "from":"Denzel Curry",
+         "to":"A$AP Rocky",
+         "similarity":0.7025513062181084
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.443177,
-         "target":"a9dd15ac-c1bf-4c11-925c-c5a68635d0f2"
+         "from":"Denzel Curry",
+         "to":"Childish Gambino",
+         "similarity":0.67082934348442
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.440969,
-         "target":"a0e8a1b1-5f8f-475a-a253-17415c17d0ff"
+         "from":"Denzel Curry",
+         "to":"Little Simz",
+         "similarity":0.6673361233054113
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.410318,
-         "target":"e6424fa5-08d3-41c6-96f3-8549f733708c"
+         "from":"Denzel Curry",
+         "to":"Joey Bada$$",
+         "similarity":0.6230400866909883
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.394016,
-         "target":"8b22acd6-20e6-4463-a75c-c14b5cfdb666"
+         "from":"Denzel Curry",
+         "to":"Lupe Fiasco",
+         "similarity":0.5750606059204788
       },
       {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.386798,
-         "target":"42234de3-79be-4e2f-9366-00cd57da2f82"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.378458,
-         "target":"cf15719f-51f9-4db8-a15d-5eed9664ce69"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.377728,
-         "target":"994a4bd6-584e-40c8-a8d7-5fdc3b6db8b2"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.376581,
-         "target":"f7a94446-aa3f-41e6-b3d0-46dd695d7d6e"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.375465,
-         "target":"188711ed-c99b-439c-844a-ca831f63a727"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.373651,
-         "target":"21645c31-fe1c-45a4-955c-3e172b12c3f9"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.365305,
-         "target":"3cdb40fe-a63e-4bb9-b40d-17cda5f50979"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.358296,
-         "target":"5f6ab597-f57a-40da-be9e-adad48708203"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.357438,
-         "target":"02cd2007-b4ba-4eaa-9798-b26a1c851ce5"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.33108,
-         "target":"59db3d82-86ea-451f-881f-dffc8ec387c9"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.330132,
-         "target":"d5d97b2b-b83b-4976-814a-056d9076c8c3"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.32766,
-         "target":"9689aa5a-4471-4fb4-9721-07cecda0fa9f"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.316317,
-         "target":"9f75277c-b283-4846-ac8c-f932255cd0ac"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.315762,
-         "target":"37b2cb82-ef79-4d46-a184-a549450aa231"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.311543,
-         "target":"48262e82-db9f-4a92-b650-dfef979b73ec"
-      },
-      {
-         "source":"381086ea-f511-4aba-bdf9-71c753dc5077",
-         "similarity":0.310495,
-         "target":"b95ce3ff-3d05-4e87-9e01-c97b66af13d4"
+         "from":"Denzel Curry",
+         "to":"J. Cole",
+         "similarity":0.5650860745080492
       }
    ]
 }

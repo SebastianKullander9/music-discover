@@ -1,7 +1,7 @@
 import pLimit from "p-limit";
 const limit = pLimit(2);
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:3001";
 const RELATED_LIMIT = 50;
 
 const BATCH_SIZE = 25;

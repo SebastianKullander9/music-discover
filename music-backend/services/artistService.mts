@@ -1,5 +1,5 @@
 import { parseForNeo4j } from "../parser/index.mts";
-import { importArtist, importArtistFull, computeAudioSimilarity } from "../neo4j/driver.mts";
+import { importArtistFull, computeAudioSimilarity } from "../neo4j/driver.mts";
 import { ArtistDataType } from "../neo4j/dataTypes.mts";
 
 type AggregatedArtist = {
@@ -15,7 +15,7 @@ type AggregatedArtist = {
 };
 
 export async function importArtists(name: string) {
-    const response = await fetch(`http://localhost:3000/api/aggregate/aggregate-artist-data?name=${name}`, {
+    const response = await fetch(`http://localhost:3001/api/aggregate/aggregate-artist-data?name=${name}`, {
         method: "GET",
     });
 

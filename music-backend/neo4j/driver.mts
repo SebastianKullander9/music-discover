@@ -18,14 +18,10 @@ export const driver = neo4j.driver(
     neo4j.auth.basic(neo4jUsername, neo4jPassword)
 );
 
-/**
- * Import an artist node with its basic info and optional tags and similarity relationships.
- */
 export async function importArtistFull(artistData: ArtistDataType) {
     const session = driver.session();
 
     try {
-        // 1️⃣ Create or update Artist node
         await session.run(
             `
             MERGE (a:Artist {mbid: $mbid})
@@ -53,7 +49,6 @@ export async function importArtistFull(artistData: ArtistDataType) {
             }
         );
 
-        // 2️⃣ Create TAG nodes and TAGGED_WITH relationships
         for (const tag of artistData.topListenbrainzTags || []) {
             await session.run(
                 `
@@ -74,7 +69,6 @@ export async function importArtistFull(artistData: ArtistDataType) {
             );
         }
 
-        // 3️⃣ Create SIMILAR_TO relationships from similarity data
         for (const relation of artistData.similarityRelationships || []) {
             const targetMbid = relation.targetArtistMbid || `NAME::${relation.targetArtistName}`;
             await session.run(
@@ -100,9 +94,6 @@ export async function importArtistFull(artistData: ArtistDataType) {
     return { added: artistData.name };
 }
 
-/**
- * Compute audio-based similarity between all artists and create AUDIO_SIMILAR relationships.
- */
 export async function computeAudioSimilarity() {
     const session = driver.session();
 

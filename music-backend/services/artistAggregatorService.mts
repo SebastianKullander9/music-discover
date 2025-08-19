@@ -1,3 +1,4 @@
+import { driver } from "../neo4j.mts";
 import pLimit from "p-limit";
 const limit = pLimit(2);
 
@@ -94,6 +95,22 @@ async function getAllSongData(songs: Song[]): Promise<{ mbid: string; name?: str
     return allData;
 }
 
+async function getExistingArtistMbids(): Promise<Set<string>> {
+    const session = driver.session();
+    try {
+        const result = await session.run(`
+            MATCH (a:Artist)
+            WHERE a.mbid IS NOT NULL
+            RETURN trim(a.mbid) AS mbid
+        `);
+
+        const mbids = result.records.map(r => r.get("mbid"));
+        return new Set(mbids);
+    } finally {
+        await session.close();
+    }
+}
+
 export async function aggregateArtistData(name: string) {
     const encodedName = encodeURIComponent(name);
 
@@ -117,8 +134,13 @@ export async function aggregateArtistData(name: string) {
         ...strippedSimilarArtistsLastFm
     ]
 
+    const existingMbids = await getExistingArtistMbids();
+    const newArtists = mainAndRelatedArtists.filter(
+        artist => !existingMbids.has(artist.artistMbid)
+    );
+
     const artistsAggregatedData = (
-        await Promise.all(mainAndRelatedArtists.map( artist =>
+        await Promise.all(newArtists.map( artist =>
             limit(async () => {
                 try {
                 //spotify data

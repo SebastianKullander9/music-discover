@@ -95,9 +95,7 @@ export async function getTagSharedArtistsGraph(artistName: string) {
         { artistName }
         );
 
-
         nodes.push({ id: artistName, label: artistName });
-
 
         result.records.forEach(record => {
             const name = record.get("name");

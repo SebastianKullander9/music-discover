@@ -4,27 +4,38 @@ import { useEffect, useState, useRef } from "react";
 import renderGraph from "../components/renderGraph";
 import { GraphData } from "@/types/graph";
 
-export default function Graph() {
+interface GraphViewProps {
+    containerRef: React.RefObject<HTMLDivElement>;
+    artistName: string | null;
+}
+
+export default function GraphView({ containerRef, artistName }: GraphViewProps) {
     const [data, setData] = useState<GraphData | null>(null);
     const ref = useRef<SVGSVGElement | null>(null);
     const [width, setWidth] = useState<number>();
     const [height, setHeight] = useState<number>();
     
     useEffect(() => {
+        if (!containerRef.current) return;
+
         const handleResize = () => {
-            setWidth(window.innerWidth);
-            setHeight(window.innerHeight);
+            const { width, height } = containerRef.current.getBoundingClientRect();
+
+            setWidth(width);
+            setHeight(height);
         };
 
         window.addEventListener("resize", handleResize);
         handleResize();
 
         return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    }, [containerRef]);
 
     useEffect(() => {
+        if (artistName === "") return;
+
         const fetchData = async () => {
-            const response = await fetch("http://localhost:3001/query/get-similar-artists-graph?name=JID", {
+            const response = await fetch(`http://localhost:3001/query/get-similar-artists-graph?name=${artistName}`, {
                 method: "GET",
             });
 
@@ -34,7 +45,7 @@ export default function Graph() {
         }
         
         fetchData();
-    }, [])
+    }, [artistName])
 
     useEffect(() => {
         if (!data || !ref.current || !width || !height) return;

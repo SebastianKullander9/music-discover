@@ -14,3 +14,33 @@ export async function getSimilarArtistsGraph(name: string) {
         throw new Error("Could not fetch data from Neo4j");
     }
 }
+
+export async function getAudioSimilarArtistsGraph(name: string) {
+    try {
+        const graphData = await query.getAudioSimilarArtistsGraph(name);
+
+        if (!graphData || !graphData.nodes?.length) {
+            throw new Error(`No graph data found for artist: ${name}`);
+        }
+
+        return graphData;
+    } catch (err) {
+        console.error("Neo4j query failed:", err);
+        throw new Error("Could not fetch data from Neo4j");
+    }
+}
+
+export async function getTagSharedArtistsGraph(name: string) {
+    try {
+        const graphData = await query.getTagSharedArtistsGraph(name);
+
+        if (!graphData || !graphData.nodes?.length) {
+            throw new Error(`No graph data found for artist: ${name}`);
+        }
+
+        return graphData;
+    } catch (err) {
+        console.error("Neo4j query failed:", err);
+        throw new Error("Could not fetch data from Neo4j");
+    }
+}

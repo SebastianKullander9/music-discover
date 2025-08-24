@@ -13,3 +13,29 @@ export async function getSimilarArtistsGraph(
 
     return { success: true, data: data };
 }
+
+export async function getAudioSimilarArtistsGraph(
+    request: FastifyRequest<{ Querystring: { name: string } }>,
+    reply: FastifyReply
+) {
+    const data = await neo4jQueryService.getAudioSimilarArtistsGraph(request.query.name);
+
+    if (!data) {
+        throw new Error("Something went wrong.")
+    }
+
+    return { success: true, data: data };
+}
+
+export async function getTagSharedArtistsGraph(
+    request: FastifyRequest<{ Querystring: { name: string } }>,
+    reply: FastifyReply
+) {
+    const data = await neo4jQueryService.getTagSharedArtistsGraph(request.query.name);
+
+    if (!data) {
+        throw new Error("Something went wrong.")
+    }
+
+    return { success: true, data: data };
+}

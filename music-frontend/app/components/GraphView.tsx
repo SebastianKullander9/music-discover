@@ -32,10 +32,10 @@ export default function GraphView({ containerRef, artistName }: GraphViewProps) 
     }, [containerRef]);
 
     useEffect(() => {
-        if (artistName === "") return;
+        //if (artistName === "") return;
 
         const fetchData = async () => {
-            const response = await fetch(`http://localhost:3001/query/get-similar-artists-graph?name=${artistName}`, {
+            const response = await fetch(`http://localhost:3001/query/get-similar-artists-graph?name=BigXthaPlug&mbid=d25f6294-686a-4569-b1b9-fe64bfef2519`, {
                 method: "GET",
             });
 

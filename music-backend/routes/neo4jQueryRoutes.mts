@@ -28,7 +28,7 @@ export default async function neo4jQueryRoutes(fastify: FastifyInstance) {
                                             id: { type: "string" },
                                             label: { type: "string" },
                                         },
-                                        required: ["mbid", "label"]
+                                        required: ["id", "label"]
                                     }
                                 },
                                 edges: {

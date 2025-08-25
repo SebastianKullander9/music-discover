@@ -6,6 +6,7 @@ import musicbrainzRoutes from "./routes/musicbrainzRoutes.mts";
 import artistAggregatorRoutes from "./routes/artistAggregatorRoutes.mts";
 import artistRoutes from "./routes/artistRoutes.mts";
 import neo4jQueryRoutes from "./routes/neo4jQueryRoutes.mts";
+import searchRoutes from "./routes/searchRoutes.mts";
 import { AppError } from "./errors.mts";
 import { driver } from './neo4j/driver.mts';
 import cors from "@fastify/cors";
@@ -48,8 +49,9 @@ fastify.register(listenbrainzRoutes, { prefix: "/listenbrainz"});
 fastify.register(lastfmRoutes, { prefix: "/lastfm"});
 fastify.register(musicbrainzRoutes, { prefix: "/musicbrainz" });
 fastify.register(artistAggregatorRoutes, { prefix: "/api/aggregate" });
-fastify.register(artistRoutes, { prefix: "/api/artist/" });
-fastify.register(neo4jQueryRoutes, { prefix: "/query/" });
+fastify.register(artistRoutes, { prefix: "/api/artist" });
+fastify.register(neo4jQueryRoutes, { prefix: "/query" });
+fastify.register(searchRoutes, { prefix: "/search" });
 
 async function shutdown() {
     try {

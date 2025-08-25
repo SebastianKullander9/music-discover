@@ -3,10 +3,10 @@ import { NotFoundError } from "../errors.mts";
 import * as artistService from "../services/artistService.mts";
 
 export async function importArtists(
-    request: FastifyRequest<{ Querystring: { name: string } }>,
+    request: FastifyRequest<{ Querystring: { mbid: string } }>,
     reply: FastifyReply
 ) {
-    const data = await artistService.importArtists(request.query.name);
+    const data = await artistService.importArtists(request.query.mbid);
 
     if (!data) {
         throw new Error("Something went wrong.")

@@ -111,16 +111,16 @@ async function getExistingArtistMbids(): Promise<Set<string>> {
     }
 }
 
-export async function aggregateArtistData(name: string) {
-    const encodedName = encodeURIComponent(name);
+export async function aggregateArtistData(mainArtistMbid: string) {
+    //const encodedName = encodeURIComponent(name);
 
-    //get searched artists mbid from listenbrainz
-    const artistData = await fetchJSON(`${BASE_URL}/listenbrainz/get-artist-by-name?name=${encodedName}`);
-    const mainArtist = artistData.data.items[0]?.artists?.[0];
+    //get searched artists name from listenbrainz
+    const mainArtistObj = await fetchJSON(`${BASE_URL}/listenbrainz/get-artist-by-mbid?mbid=${mainArtistMbid}`);
+    const mainArtist = mainArtistObj.data;
     if (!mainArtist) throw new Error("artist not found");
 
     //get main artists related artists
-    const lastfmSimilarArtists = await fetchJSON(`${BASE_URL}/lastfm/get-similar-artists?mbid=${mainArtist.id}`);
+    const lastfmSimilarArtists = await fetchJSON(`${BASE_URL}/lastfm/get-similar-artists?mbid=${mainArtistMbid}`);
     const similarArtistsLastfm: SimilarArtist[] = lastfmSimilarArtists.data;
     const strippedSimilarArtistsLastFm: SimilarArtist[] = (similarArtistsLastfm as SimilarArtist[])
         .filter((a): a is { name: string; artistMbid: string } =>
@@ -130,7 +130,7 @@ export async function aggregateArtistData(name: string) {
         .map(a => ({ name: a.name, artistMbid: a.artistMbid }));
 
     const mainAndRelatedArtists = [
-        { name: mainArtist.name, artistMbid: mainArtist.id },
+        { name: mainArtist.name, artistMbid: mainArtistMbid },
         ...strippedSimilarArtistsLastFm
     ]
 
@@ -148,8 +148,8 @@ export async function aggregateArtistData(name: string) {
                 const artistObjectSpotify = spotifyData.data;
 
                 //listenbrainz data
-                const listenbrainzData = await fetchWithRateLimit(`${BASE_URL}/listenbrainz/get-artist-by-name?name=${encodeURIComponent(artist.name)}`);
-                const artistObjectListenbrainz = listenbrainzData.data;//VALDATE THAT ITS THE EXPECTED ARTIST BEFORE ADDING
+                //const listenbrainzData = await fetchWithRateLimit(`${BASE_URL}/listenbrainz/get-artist-by-name?name=${encodeURIComponent(artist.name)}`);
+                //const artistObjectListenbrainz = listenbrainzData.data;//VALDATE THAT ITS THE EXPECTED ARTIST BEFORE ADDING
 
                 //lastfm data
                 //similar artists
@@ -171,7 +171,7 @@ export async function aggregateArtistData(name: string) {
                     spotifyGenres: artistObjectSpotify.genres,
                     spotifyPopularity: artistObjectSpotify.popularity,
                     spotifyFollowers: artistObjectSpotify.followers.total,
-                    listenbrainzTags: artistObjectListenbrainz.items[0].artists[0].tags,
+                    //listenbrainzTags: artistObjectListenbrainz.items[0].artists[0].tags,
                     lastfmTags: lastfmTopTagsData,
                     lastfmSimilarArtists: similarArtistsLastfm,
                     lastfmTopTracksWithData: lastfmTopTracksWithData

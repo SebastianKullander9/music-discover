@@ -1,36 +1,37 @@
 import neo4j from "neo4j-driver";
 import { driver } from "./driver.mts";
 
-export async function getSimilarArtistsGraph(artistName: string) {
+export async function getSimilarArtistsGraph(mainArtist: string, mbid: string) {
     const session = driver.session();
-    const nodes: { id: string; label: string }[] = [];
+    const nodes: { name: string, mbid: string; label: string }[] = [];
     const edges: { from: string; to: string; similarity: number }[] = [];
 
     try {
         const result = await session.run(
             `
-            MATCH (a:Artist {name: $artistName})-[r:SIMILAR_TO]-(similar:Artist)
+            MATCH (a:Artist {mbid: $mbid})-[r:SIMILAR_TO]-(similar:Artist)
             WHERE similar.name IS NOT NULL
-            RETURN DISTINCT similar.name AS name, r.similarity AS similarity
+            RETURN DISTINCT similar.name AS name, similar.mbid as mbid, r.similarity AS similarity
             ORDER BY similarity DESC
             LIMIT 50
             `,
-            { artistName }
+            { mbid }
         );
 
-        nodes.push({ id: artistName, label: artistName });
+        nodes.push({ name: mainArtist, mbid: mbid, label: mainArtist });
 
         result.records.forEach(record => {
             const name = record.get("name");
+            const mbid = record.get("mbid");
             const similarity = record.get("similarity");
 
             if (!name) return;
 
-            if (!nodes.some(n => n.id === name)) {
-                nodes.push({ id: name, label: name });
+            if (!nodes.some(n => n.mbid === mbid)) {
+                nodes.push({ name: name, mbid: mbid, label: name });
             }
 
-            edges.push({ from: artistName, to: name, similarity });
+            edges.push({ from: mainArtist, to: name, similarity });
         });
 
         return { nodes, edges };

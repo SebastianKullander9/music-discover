@@ -1,11 +1,11 @@
 import * as query from "../neo4j/queries.mts";
 
-export async function getSimilarArtistsGraph(name: string) {
+export async function getSimilarArtistsGraph(name: string, mbid: string) {
     try {
-        const graphData = await query.getSimilarArtistsGraph(name);
+        const graphData = await query.getSimilarArtistsGraph(name, mbid);
 
         if (!graphData || !graphData.nodes?.length) {
-            throw new Error(`No graph data found for artist: ${name}`);
+            throw new Error(`No graph data found for artist: ${name} with mbid: ${mbid}`);
         }
 
         return graphData;
@@ -15,12 +15,12 @@ export async function getSimilarArtistsGraph(name: string) {
     }
 }
 
-export async function getAudioSimilarArtistsGraph(name: string) {
+export async function getAudioSimilarArtistsGraph(name: string, mbid: string) {
     try {
-        const graphData = await query.getAudioSimilarArtistsGraph(name);
+        const graphData = await query.getAudioSimilarArtistsGraph(mbid);
 
         if (!graphData || !graphData.nodes?.length) {
-            throw new Error(`No graph data found for artist: ${name}`);
+            throw new Error(`No graph data found for artist: ${name} with mbid: ${mbid}`);
         }
 
         return graphData;
@@ -30,12 +30,12 @@ export async function getAudioSimilarArtistsGraph(name: string) {
     }
 }
 
-export async function getTagSharedArtistsGraph(name: string) {
+export async function getTagSharedArtistsGraph(name: string, mbid: string) {
     try {
-        const graphData = await query.getTagSharedArtistsGraph(name);
+        const graphData = await query.getTagSharedArtistsGraph(mbid);
 
         if (!graphData || !graphData.nodes?.length) {
-            throw new Error(`No graph data found for artist: ${name}`);
+            throw new Error(`No graph data found for artist: ${name} with mbid: ${mbid}`);
         }
 
         return graphData;

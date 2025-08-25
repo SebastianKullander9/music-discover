@@ -6,9 +6,9 @@ export default async function artistAggregatorRoutes(fastify: FastifyInstance) {
         schema: {
             querystring: {
                 type: "object",
-                required: ["name"],
+                required: ["mbid"],
                 properties: {
-                    name: { type: "string", minLength: 1 }
+                    mbid: { type: "string", minLength: 1 }
                 }
             },
             response: {

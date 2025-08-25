@@ -14,8 +14,8 @@ type AggregatedArtist = {
     lastfmTopTracksWithData: any[];
 };
 
-export async function importArtists(name: string) {
-    const response = await fetch(`http://localhost:3001/api/aggregate/aggregate-artist-data?name=${name}`, {
+export async function importArtists(mbid: string) {
+    const response = await fetch(`http://localhost:3001/api/aggregate/aggregate-artist-data?mbid=${mbid}`, {
         method: "GET",
     });
 

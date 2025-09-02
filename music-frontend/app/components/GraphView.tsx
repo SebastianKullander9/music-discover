@@ -4,12 +4,17 @@ import { useEffect, useState, useRef } from "react";
 import renderGraph from "../components/renderGraph";
 import { GraphData } from "@/types/graph";
 
-interface GraphViewProps {
-    containerRef: React.RefObject<HTMLDivElement>;
-    artistName: string | null;
+type Artist = {
+    name: string;
+    mbid: string;
 }
 
-export default function GraphView({ containerRef, artistName }: GraphViewProps) {
+interface GraphViewProps {
+    containerRef: React.RefObject<HTMLDivElement>;
+    artist: Artist;
+}
+
+export default function GraphView({ containerRef, artist }: GraphViewProps) {
     const [data, setData] = useState<GraphData | null>(null);
     const ref = useRef<SVGSVGElement | null>(null);
     const [width, setWidth] = useState<number>();
@@ -32,10 +37,10 @@ export default function GraphView({ containerRef, artistName }: GraphViewProps) 
     }, [containerRef]);
 
     useEffect(() => {
-        //if (artistName === "") return;
+        if (artist.name === "" || artist.mbid === "") return;
 
         const fetchData = async () => {
-            const response = await fetch(`http://localhost:3001/query/get-similar-artists-graph?name=BigXthaPlug&mbid=d25f6294-686a-4569-b1b9-fe64bfef2519`, {
+            const response = await fetch(`http://localhost:3001/query/get-similar-artists-graph?name=${artist.name}&mbid=${artist.mbid}`, {
                 method: "GET",
             });
 
@@ -45,7 +50,7 @@ export default function GraphView({ containerRef, artistName }: GraphViewProps) 
         }
         
         fetchData();
-    }, [artistName])
+    }, [artist])
 
     useEffect(() => {
         if (!data || !ref.current || !width || !height) return;

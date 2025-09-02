@@ -57,7 +57,7 @@ export default function SearchInput({ onResults, results }: SearchInputProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for an artist..."
-            className={`p-4 w-full border-1 border-gray-4 rounded-md ${results.length === 0 ? "" : "rounded-br-none rounded-bl-none"}`}
+            className={`p-4 w-full focus:outline-none focus:ring-0 bg-white rounded-xl`}
         />
     );
 }

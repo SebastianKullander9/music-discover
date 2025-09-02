@@ -1,17 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 @import "tailwindcss";
 
 :root {
-
+  --font-cal-sans: 'Cal Sans', sans-serif;
+  --font-rubik: 'Rubik', sans-serif;
+  --font-plus-jakarta-sans: 'Plus Jakarta Sans', sans-serif;
 }
 
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-rubik);
 }
 
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
+p, a {
+  font-family: var(--font-plus-jakarta-sans);
 }
 
 html, body {

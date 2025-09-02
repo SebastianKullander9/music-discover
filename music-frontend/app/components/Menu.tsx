@@ -11,18 +11,20 @@ type Artist = {
 }
 
 interface MenuProps {
-    setArtist: React.Dispatch<React.SetStateAction<Artist>>
+    setArtist: React.Dispatch<React.SetStateAction<Artist>>;
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Menu({ setArtist }: MenuProps) {
+export default function Menu({ setArtist, setIsLoading }: MenuProps) {
     const [discoveryMode, setDiscoverMode] = useState("similarity");
+
 
     return (
         <div className="w-full h-full px-4 py-2 flex flex-col justify-between">
             <div>
                 <h1 className="text-xl font-semibold pb-4">Discover Music Through Nodes</h1>
                 <p className="text-gray-700 pb-2">Pick an artist you like, the main node. Similar artists appear around it, with closer nodes meaning stronger matches.</p>
-                <ArtistSearch setArtist={setArtist}/>
+                <ArtistSearch setArtist={setArtist} setIsLoading={setIsLoading}/>
             </div>
 
             <div>

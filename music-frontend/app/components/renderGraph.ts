@@ -63,9 +63,7 @@ export default function renderGraph(svgElement: SVGSVGElement, data: GraphData, 
         .force("charge", d3.forceManyBody().strength(chargeStrength))
         .force("center", d3.forceCenter(width / 2, height / 2));
 
-    if (width < RESPONSIVE_BREAKPOINT ) {
-        simulation.force("bounds", forceBounds(simulation, width, height))
-    }
+    simulation.force("bounds", forceBounds(simulation, width, height))
 
     simulation.force(
         "collide",

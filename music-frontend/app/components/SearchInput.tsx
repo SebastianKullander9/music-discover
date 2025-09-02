@@ -8,14 +8,15 @@ type ArtistSuggestion = {
 type SearchInputProps = {
     onResults: (results: ArtistSuggestion[]) => void;
     results: ArtistSuggestion[];
+    queryState: string;
+    setQueryState: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function SearchInput({ onResults, results }: SearchInputProps) {
-    const [query, setQuery] = useState("");
+export default function SearchInput({ onResults, results, queryState, setQueryState }: SearchInputProps) {
     const abortControllerRef = useRef<AbortController | null>(null);
 
     useEffect(() => {
-        if (query.length < 2) {
+        if (queryState.length < 2) {
             onResults([]);
             return;
         }
@@ -26,7 +27,7 @@ export default function SearchInput({ onResults, results }: SearchInputProps) {
             abortControllerRef.current = controller;
 
             try {
-                const response = await fetch(`http://localhost:3001/search/search-artists?name=${query}`, {
+                const response = await fetch(`http://localhost:3001/search/search-artists?name=${queryState}`, {
                     method: "GET",
                     signal: controller.signal
                 });
@@ -49,13 +50,13 @@ export default function SearchInput({ onResults, results }: SearchInputProps) {
         }, 300);
 
         return () => clearTimeout(handler);
-    }, [query, onResults]);
+    }, [queryState, onResults]);
 
     return (
         <input 
             type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            value={queryState}
+            onChange={(e) => setQueryState(e.target.value)}
             placeholder="Search for an artist..."
             className={`p-4 w-full focus:outline-none focus:ring-0 bg-white rounded-xl`}
         />

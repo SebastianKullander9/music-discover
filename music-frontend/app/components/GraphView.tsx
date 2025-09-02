@@ -39,7 +39,16 @@ export default function GraphView({ containerRef, artist }: GraphViewProps) {
     useEffect(() => {
         if (artist.name === "" || artist.mbid === "") return;
 
+        
+
         const fetchData = async () => {
+            const addedToNeo4j = await fetch(`http://localhost:3001/api/artist/import-artists?mbid=${artist.mbid}`, {
+                method: "GET"
+            });
+
+            const addedArtists = await addedToNeo4j.json();
+            console.log(addedArtists.data);
+
             const response = await fetch(`http://localhost:3001/query/get-similar-artists-graph?name=${artist.name}&mbid=${artist.mbid}`, {
                 method: "GET",
             });

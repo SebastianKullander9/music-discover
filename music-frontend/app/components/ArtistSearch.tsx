@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import SearchInput from "./SearchInput";
 
 type Artist = {
@@ -9,9 +9,10 @@ type Artist = {
 interface ArtistSearchProps {
     setArtist: React.Dispatch<React.SetStateAction<Artist>>;
     setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function ArtistSearch({ setArtist, setIsLoading }: ArtistSearchProps) {
+export default function ArtistSearch({ setArtist, setIsLoading, setIsOpen }: ArtistSearchProps) {
     const [results, setResults] = useState<Artist[]>([]);
     const [searchedArtist, setSearchedArtist] = useState("");
     const [query, setQuery] = useState("");
@@ -22,11 +23,12 @@ export default function ArtistSearch({ setArtist, setIsLoading }: ArtistSearchPr
         setIsLoading(true);
         setQuery("");
         setResults([]);
+        setIsOpen(false);
     }
 
     return (
         <div className="w-full rounded-2xl inset-shadow-xs">
-            <SearchInput onResults={setResults} results={results} queryState={query} setQueryState={setQuery}/>
+            <SearchInput onResults={setResults} results={results} queryState={query} setQueryState={setQuery} />
             {results.length > 0 && (
                 <ul className="flex flex-col items-center bg-white rounded-xl mt-2">
                     {results?.map((artist) => (

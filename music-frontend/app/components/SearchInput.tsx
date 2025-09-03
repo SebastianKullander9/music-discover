@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Search } from "lucide-react";
 
 type ArtistSuggestion = {
     name: string;
@@ -13,7 +14,13 @@ type SearchInputProps = {
 }
 
 export default function SearchInput({ onResults, results, queryState, setQueryState }: SearchInputProps) {
+    const [isTouched, setIsTouched] = useState(false);
+    const [hasContent, setHasContent] = useState(false);
     const abortControllerRef = useRef<AbortController | null>(null);
+
+    useEffect(() => {
+        setHasContent(queryState !== "");
+    }, [queryState]);
 
     useEffect(() => {
         if (queryState.length < 2) {
@@ -52,13 +59,20 @@ export default function SearchInput({ onResults, results, queryState, setQuerySt
         return () => clearTimeout(handler);
     }, [queryState, onResults]);
 
+    const showIcon = !isTouched && !hasContent;
+
     return (
-        <input 
-            type="text"
-            value={queryState}
-            onChange={(e) => setQueryState(e.target.value)}
-            placeholder="Search for an artist..."
-            className={`p-4 w-full focus:outline-none focus:ring-0 bg-white rounded-xl`}
-        />
+        <div className="relative">
+             <input 
+                type="text"
+                value={queryState}
+                onChange={(e) => setQueryState(e.target.value)}
+                onFocus={() => setIsTouched(true)}
+                onBlur={() => setIsTouched(false)}
+                placeholder="Search for an artist..."
+                className={`p-4 ${showIcon ? "pl-12" : "pl-4"} w-full focus:outline-none focus:ring-0 bg-white rounded-xl`}
+            />
+            { showIcon ? <Search className="absolute top-1/2 -translate-y-1/2 left-4 text-gray-400" /> : ""}
+        </div>
     );
 }

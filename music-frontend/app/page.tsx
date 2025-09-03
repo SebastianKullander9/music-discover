@@ -3,6 +3,8 @@
 import { useRef, useState, useEffect } from "react";
 import GraphView from "./components/GraphView";
 import Menu from "./components/Menu";
+import Hamburger from "hamburger-react";
+import Modal from "./components/Modal";
 import { Loader2 } from "lucide-react";
 import { GraphData } from "@/types/graph";
 
@@ -10,6 +12,8 @@ export default function Home() {
 	const [artist, setArtist] = useState({ name: "", mbid: "" });
 	const [data, setData] = useState<GraphData | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 	const graphContainerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -36,13 +40,22 @@ export default function Home() {
         fetchData();
     }, [artist, setIsLoading]);
 
+	const handleOpen = () => {
+		setIsOpen(!isOpen);
+	}
+
 	return (
-		<div className="bg-blue-100 h-screen w-screen flex flex-row">
-			<div className="w-2/10 hidden lg:block">
-				<Menu setArtist={setArtist} setIsLoading={setIsLoading} />
+		<div className="relative bg-blue-100 h-screen w-screen flex flex-row">
+			<div className="hidden lg:block lg:w-2/10">
+				<Menu setArtist={setArtist} setIsLoading={setIsLoading} setIsOpen={setIsOpen} setIsModalOpen={setIsModalOpen} />
 			</div>
-			<div className="relative w-full lg:w-8/10 bg-white m-2 rounded-3xl inset-shadow-xs" ref={graphContainerRef}>
-				
+			<div className={`
+				lg:hidden fixed max-w-110 h-full z-50 bg-blue-100 transform transition-transform duration-300
+				${isOpen ? "translate-x-0" : "-translate-x-full"}
+			`}>
+				<Menu setArtist={setArtist} setIsLoading={setIsLoading} setIsOpen={setIsOpen} setIsModalOpen={setIsModalOpen} />
+			</div>
+			<div className="relative w-full lg:w-8/10 bg-white lg:m-2 lg:rounded-3xl inset-shadow-xs" ref={graphContainerRef}>
 				{artist.name === "" || artist.mbid === "" ? 
 					<div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2">
 					<p className="text-sm text-gray-700">No artist has been searched yet...</p>
@@ -56,6 +69,19 @@ export default function Home() {
 					<GraphView containerRef={graphContainerRef as React.RefObject<HTMLDivElement>} data={data}/>
 				}
 			</div>
+
+			<div className="lg:hidden absolute top-0 right-0 z-50 text-black">
+                <Hamburger
+                    toggled={isOpen}
+                    toggle={setIsOpen}
+                    size={26}
+                    label="Show menu"
+                    distance="lg"
+                />
+            </div>
+
+			<Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+			</Modal>
 		</div>
 	);
 }

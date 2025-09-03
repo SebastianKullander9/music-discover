@@ -18,7 +18,7 @@ export async function getAudioSimilarArtistsGraph(
     request: FastifyRequest<{ Querystring: { name: string, mbid: string } }>,
     reply: FastifyReply
 ) {
-    const data = await neo4jQueryService.getAudioSimilarArtistsGraph(request.query.name, request.query.name);
+    const data = await neo4jQueryService.getAudioSimilarArtistsGraph(request.query.name, request.query.mbid);
 
     if (!data) {
         throw new Error("Something went wrong.")
@@ -31,7 +31,7 @@ export async function getTagSharedArtistsGraph(
     request: FastifyRequest<{ Querystring: { name: string, mbid: string } }>,
     reply: FastifyReply
 ) {
-    const data = await neo4jQueryService.getTagSharedArtistsGraph(request.query.name, request.query.name);
+    const data = await neo4jQueryService.getTagSharedArtistsGraph(request.query.name, request.query.mbid);
 
     if (!data) {
         throw new Error("Something went wrong.")

@@ -17,7 +17,7 @@ export async function getSimilarArtistsGraph(name: string, mbid: string) {
 
 export async function getAudioSimilarArtistsGraph(name: string, mbid: string) {
     try {
-        const graphData = await query.getAudioSimilarArtistsGraph(mbid);
+        const graphData = await query.getAudioSimilarArtistsGraph(name, mbid);
 
         if (!graphData || !graphData.nodes?.length) {
             throw new Error(`No graph data found for artist: ${name} with mbid: ${mbid}`);
@@ -32,7 +32,7 @@ export async function getAudioSimilarArtistsGraph(name: string, mbid: string) {
 
 export async function getTagSharedArtistsGraph(name: string, mbid: string) {
     try {
-        const graphData = await query.getTagSharedArtistsGraph(mbid);
+        const graphData = await query.getTagSharedArtistsGraph(name, mbid);
 
         if (!graphData || !graphData.nodes?.length) {
             throw new Error(`No graph data found for artist: ${name} with mbid: ${mbid}`);

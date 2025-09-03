@@ -42,7 +42,7 @@ export async function getSimilarArtistsGraph(mainArtist: string, mbid: string) {
     }
 }
 
-export async function getAudioSimilarArtistsGraph(artistName: string) {
+export async function getAudioSimilarArtistsGraph(artistName: string, mbid: string) {
     const session = driver.session();
     const nodes: { id: string; label: string }[] = [];
     const edges: { from: string; to: string; similarity: number }[] = [];
@@ -50,28 +50,29 @@ export async function getAudioSimilarArtistsGraph(artistName: string) {
     try {
         const result = await session.run(
             `
-            MATCH (a:Artist {name: $artistName})-[r:AUDIO_SIMILAR]-(similar:Artist)
+            MATCH (a:Artist {mbid: $mbid})-[r:AUDIO_SIMILAR]-(similar:Artist)
             WHERE similar.name IS NOT NULL
-            RETURN DISTINCT similar.name AS name, r.similarity AS similarity
+            RETURN DISTINCT similar.name AS name, similar.mbid AS mbid, r.similarity AS similarity
             ORDER BY r.similarity DESC
             LIMIT 50
             `,
-            { artistName }
+            { mbid }
         );
 
-        nodes.push({ id: artistName, label: artistName });
+        nodes.push({ id: mbid, label: artistName });
 
         result.records.forEach(record => {
             const name = record.get("name");
+            const similarMbid = record.get("mbid");
             const similarity = record.get("similarity");
 
-            if (!name) return;
+            if (!name || !similarMbid) return;
 
-            if (!nodes.some(n => n.id === name)) {
-                nodes.push({ id: name, label: name });
+            if (!nodes.some(n => n.id === similarMbid)) {
+                nodes.push({ id: similarMbid, label: name });
             }
 
-            edges.push({ from: artistName, to: name, similarity });
+            edges.push({ from: mbid, to: similarMbid, similarity });
         });
 
         return { nodes, edges };
@@ -80,7 +81,7 @@ export async function getAudioSimilarArtistsGraph(artistName: string) {
     }
 }
 
-export async function getTagSharedArtistsGraph(artistName: string) {
+export async function getTagSharedArtistsGraph(artistName: string, mbid: string) {
     const session = driver.session();
     const nodes: { id: string; label: string }[] = [];
     const edges: { from: string; to: string; similarity: number }[] = [];
@@ -88,17 +89,24 @@ export async function getTagSharedArtistsGraph(artistName: string) {
     try {
         const result = await session.run(
         `
-        MATCH (a:Artist {name: $artistName})- [r1:TAGGED_WITH] -> (t:Tag) <- [r2:TAGGED_WITH] - (similar:Artist)
-        WHERE similar.name IS NOT NULL AND similar.name <> $artistName
-        WITH similar, COLLECT(r1.normalizedWeight * r2.normalizedWeight) AS products
-        RETURN similar.name AS name, REDUCE(s=0.0, x IN products | s + x)/SIZE(products) AS similarity
+        MATCH (a:Artist {mbid: $mbid})
+        MATCH (similar:Artist)
+        WHERE similar.mbid <> $mbid
+        WITH a, similar,
+             [tag IN a.topLastfmGenres | toLower(tag)] AS aTags,
+             [tag IN similar.topLastfmGenres | toLower(tag)] AS sTags
+        WITH similar,
+             size([tag IN aTags WHERE tag IN sTags]) AS sharedCount,
+             size(aTags + sTags) - size([tag IN aTags WHERE tag IN sTags]) AS totalCount
+        RETURN similar.name AS name,
+               (CASE WHEN totalCount = 0 THEN 0 ELSE sharedCount * 1.0 / totalCount END) AS similarity
         ORDER BY similarity DESC
         LIMIT 50
         `,
-        { artistName }
+        { mbid }
         );
 
-        nodes.push({ id: artistName, label: artistName });
+        nodes.push({ id: mbid, label: artistName });
 
         result.records.forEach(record => {
             const name = record.get("name");
@@ -110,23 +118,8 @@ export async function getTagSharedArtistsGraph(artistName: string) {
                 nodes.push({ id: name, label: name });
             }
 
-            edges.push({ from: artistName, to: name, similarity });
+            edges.push({ from: mbid, to: name, similarity });
         });
-
-        if (edges.length > 0) {
-            const sims = edges.map(e => e.similarity);
-            const minSim = Math.min(...sims);
-            const maxSim = Math.max(...sims);
-
-            const scale = (sim: number) => {
-                if (maxSim === minSim) return 0.75;
-                return 0.5 + ((sim - minSim) / (maxSim - minSim)) * 0.5;
-            };
-
-            edges.forEach(edge => {
-                edge.similarity = scale(edge.similarity);
-            });
-        }
 
         return { nodes, edges };
     } finally {

@@ -41,9 +41,6 @@ export default function renderGraph(svgElement: SVGSVGElement, data: GraphData, 
     const linkDistance = Math.min(width, (width < RESPONSIVE_BREAKPOINT ? height : height * DECREASE_LINK_DISTANCE));
     const chargeStrength = -Math.min(width, height);
 
-    console.log(width);
-    console.log(height);
-
     const centerNode = data.nodes[0];
     if (centerNode) {
         centerNode.fx = width / 2;

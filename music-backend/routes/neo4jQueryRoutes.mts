@@ -56,9 +56,10 @@ export default async function neo4jQueryRoutes(fastify: FastifyInstance) {
         schema: {
             querystring: {
                 type: "object",
-                required: ["name"],
+                required: ["name", "mbid"],
                 properties: {
-                    name: { type: "string", minLength: 1 }
+                    name: { type: "string", minLength: 1 },
+                    mbid: { type: "string", minLength: 1 }
                 }
             },
             response: {
@@ -105,9 +106,10 @@ export default async function neo4jQueryRoutes(fastify: FastifyInstance) {
         schema: {
             querystring: {
                 type: "object",
-                required: ["name"],
+                required: ["name", "mbid"],
                 properties: {
-                    name: { type: "string", minLength: 1 }
+                    name: { type: "string", minLength: 1 },
+                    mbid: { type: "string", minLength: 1 }
                 }
             },
             response: {

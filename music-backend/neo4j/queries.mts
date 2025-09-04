@@ -9,16 +9,16 @@ export async function getSimilarArtistsGraph(mainArtist: string, mbid: string) {
     try {
         const result = await session.run(
             `
-            MATCH (a:Artist {mbid: $mbid})-[r:SIMILAR_TO]-(similar:Artist)
-            WHERE similar.name IS NOT NULL
-            RETURN DISTINCT similar.name AS name, similar.mbid AS mbid, r.similarity AS similarity
-            ORDER BY similarity DESC
-            LIMIT 50
+                MATCH (a:Artist {mbid: $mbid})-[r:SIMILAR_TO]-(similar:Artist)
+                WHERE similar.name IS NOT NULL
+                WITH similar, max(r.similarity) AS similarity
+                RETURN similar.name AS name, similar.mbid AS mbid, similarity
+                ORDER BY similarity DESC
+                LIMIT 50
             `,
             { mbid }
         );
 
-        // Use mbid as unique identifier to preserve positions
         nodes.push({ id: mbid, label: mainArtist });
 
         result.records.forEach(record => {
@@ -28,7 +28,6 @@ export async function getSimilarArtistsGraph(mainArtist: string, mbid: string) {
 
             if (!name || !similarMbid) return;
 
-            // Only add node if it doesn't already exist
             if (!nodes.some(n => n.id === similarMbid)) {
                 nodes.push({ id: similarMbid, label: name });
             }

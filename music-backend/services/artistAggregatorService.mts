@@ -1,6 +1,6 @@
 import { driver } from "../neo4j.mts";
 import pLimit from "p-limit";
-const limit = pLimit(2);
+const limit = pLimit(50);
 
 const BASE_URL = "http://localhost:3001";
 const RELATED_LIMIT = 50;
@@ -143,25 +143,16 @@ export async function aggregateArtistData(mainArtistMbid: string) {
         await Promise.all(newArtists.map( artist =>
             limit(async () => {
                 try {
-                //spotify data
-                const spotifyData = await fetchWithRateLimit(`${BASE_URL}/spotify/get-artist-by-name?name=${encodeURIComponent(artist.name)}`);
+                const [spotifyData, lastfmSimilar, lastfmTopTags, lastfmTopTracks] = await Promise.all([
+                    fetchWithRateLimit(`${BASE_URL}/spotify/get-artist-by-name?name=${encodeURIComponent(artist.name)}`),
+                    fetchWithRateLimit(`${BASE_URL}/lastfm/get-similar-artists?mbid=${artist.artistMbid}`),
+                    fetchWithRateLimit(`${BASE_URL}/lastfm/get-artist-top-tags?mbid=${artist.artistMbid}`),
+                    fetchWithRateLimit(`${BASE_URL}/lastfm/get-artist-top-tracks?mbid=${artist.artistMbid}`)
+                ]);
+
                 const artistObjectSpotify = spotifyData.data;
-
-                //listenbrainz data
-                //const listenbrainzData = await fetchWithRateLimit(`${BASE_URL}/listenbrainz/get-artist-by-name?name=${encodeURIComponent(artist.name)}`);
-                //const artistObjectListenbrainz = listenbrainzData.data;//VALDATE THAT ITS THE EXPECTED ARTIST BEFORE ADDING
-
-                //lastfm data
-                //similar artists
-                const lastfmSimilarArtists = await fetchWithRateLimit(`${BASE_URL}/lastfm/get-similar-artists?mbid=${artist.artistMbid}`);
-                const similarArtistsLastfm = lastfmSimilarArtists.data;
-
-                //artists top tags
-                const lastfmTopTags = await fetchWithRateLimit(`${BASE_URL}/lastfm/get-artist-top-tags?mbid=${artist.artistMbid}`);
                 const lastfmTopTagsData = lastfmTopTags.data;
-
-                //artists top tracks
-                const lastfmTopTracks = await fetchWithRateLimit(`${BASE_URL}/lastfm/get-artist-top-tracks?mbid=${artist.artistMbid}`);
+                const similarArtistsLastfm = lastfmSimilar.data;
                 const lastfmTopTracksData = lastfmTopTracks.data;
                 const lastfmTopTracksWithData = await getAllSongData(lastfmTopTracksData);
 
@@ -177,8 +168,7 @@ export async function aggregateArtistData(mainArtistMbid: string) {
                     lastfmTopTracksWithData: lastfmTopTracksWithData
                 }
             } catch (err) {
-                console.error("something went wrong")
-                return null;
+                console.error(`Failed to aggregate artist ${artist.name} (${artist.artistMbid}):`, err);
             }
             })
             

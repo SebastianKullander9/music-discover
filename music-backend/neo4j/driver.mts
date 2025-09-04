@@ -1,5 +1,6 @@
 import neo4j from "neo4j-driver";
 import { ArtistDataType } from "./dataTypes.mts";
+import { SimilarityRelationship } from "../services/artistService.mts";
 import dotenv from "dotenv";
 
 dotenv.config({ path: "../.env" });
@@ -18,106 +19,78 @@ export const driver = neo4j.driver(
     neo4j.auth.basic(neo4jUsername, neo4jPassword)
 );
 
-export async function importArtistFull(artistData: ArtistDataType) {
+export async function importArtistFull(
+    artistDataArray: ArtistDataType[],
+    similarityRelationships: SimilarityRelationship[] = []
+) {
     const session = driver.session();
 
     try {
         await session.run(
             `
-            MERGE (a:Artist {mbid: $mbid})
-            SET a.name = $name,
-                    a.spotifyPopularity = $spotifyPopularity,
-                    a.spotifyFollowers = $spotifyFollowers,
-                    a.spotifyGenres = $spotifyGenres,
-                    a.topLastfmGenres = $topLastfmGenres,
-                    a.audioTempo = $audioTempo,
-                    a.audioValence = $audioValence,
-                    a.audioDanceability = $audioDanceability,
-                    a.audioAcousticness = $audioAcousticness
+            UNWIND $artists AS artist
+            MERGE (a:Artist {mbid: artist.mbid})
+            SET a.name = artist.name,
+                a.spotifyPopularity = artist.spotifyPopularity,
+                a.spotifyFollowers = artist.spotifyFollowers,
+                a.spotifyGenres = artist.spotifyGenres,
+                a.topLastfmGenres = artist.topLastfmGenres,
+                a.audioTempo = artist.audioTempo,
+                a.audioValence = artist.audioValence,
+                a.audioDanceability = artist.audioDanceability,
+                a.audioAcousticness = artist.audioAcousticness
             `,
-            {
-                mbid: artistData.mbid,
-                name: artistData.name,
-                spotifyPopularity: artistData.spotifyPopularity,
-                spotifyFollowers: artistData.spotifyFollowers,
-                spotifyGenres: artistData.spotifyGenres,
-                topLastfmGenres: artistData.topLastfmGenres,
-                audioTempo: artistData.audioFeatures.tempo,
-                audioValence: artistData.audioFeatures.valence,
-                audioDanceability: artistData.audioFeatures.danceability,
-                audioAcousticness: artistData.audioFeatures.acousticness,
-            }
+            { artists: artistDataArray }
         );
 
-        for (const tag of artistData.topListenbrainzTags || []) {
+        if (similarityRelationships.length > 0) {
             await session.run(
                 `
-                MERGE (t:Tag {name: $tagName})
-                MERGE (a:Artist {mbid: $mbid})-[:TAGGED_WITH {
-                        rawWeight: $rawWeight,
-                        normalizedWeight: $normalizedWeight,
-                        confidence: $confidence
-                }]->(t)
+                UNWIND $rels AS r
+                MATCH (a:Artist {mbid: r.mainId})
+                MATCH (t:Artist {mbid: r.targetId})
+                MERGE (a)-[rel:SIMILAR_TO {source: r.source, relationshipType: r.relationshipType}]->(t)
+                SET rel.similarity = r.similarity
                 `,
-                {
-                    tagName: tag.name,
-                    mbid: artistData.mbid,
-                    rawWeight: tag.rawWeight,
-                    normalizedWeight: tag.normalizedWeight,
-                    confidence: tag.confidence,
-                }
-            );
-        }
-
-        for (const relation of artistData.similarityRelationships || []) {
-            const targetMbid = relation.targetArtistMbid || `NAME::${relation.targetArtistName}`;
-            await session.run(
-                `
-                MATCH (a:Artist {mbid: $mainId})
-                MATCH (t:Artist {mbid: $targetId})
-                MERGE (a)-[r:SIMILAR_TO {source: $source, relationshipType: $relationshipType}]->(t)
-                SET r.similarity = $similarity
-                `,
-                {
-                    targetId: targetMbid,
-                    mainId: artistData.mbid,
-                    similarity: relation.similarity,
-                    source: relation.source,
-                    relationshipType: relation.relationshipType,
-                }
+                { rels: similarityRelationships }
             );
         }
     } finally {
         await session.close();
     }
 
-    return { added: artistData.name };
+    return { added: artistDataArray.map(a => a.name) };
 }
 
-export async function computeAudioSimilarity() {
+export async function computeAudioSimilarity(newArtistMbids: string[]) {
     const session = driver.session();
 
     try {
-        await session.run(`
-            MATCH (a:Artist)
-            WHERE a.audioDanceability IS NOT NULL 
-              AND a.audioValence IS NOT NULL 
-              AND a.audioAcousticness IS NOT NULL 
-            WITH collect(a) AS artists
-            UNWIND range(0, size(artists)-2) AS i
-            UNWIND range(i+1, size(artists)-1) AS j
-            WITH artists[i] AS a, artists[j] AS b
-            WITH a, b,
+        await session.run(
+            `
+            UNWIND $newMbids AS newMbid
+            MATCH (new:Artist {mbid: newMbid})
+            WHERE new.audioDanceability IS NOT NULL
+              AND new.audioValence IS NOT NULL
+              AND new.audioAcousticness IS NOT NULL
+            MATCH (existing:Artist)
+            WHERE existing.audioDanceability IS NOT NULL
+              AND existing.audioValence IS NOT NULL
+              AND existing.audioAcousticness IS NOT NULL
+              AND new <> existing
+            WITH new, existing,
                  sqrt(
-                    (a.audioDanceability - b.audioDanceability)^2 +
-                    (a.audioValence - b.audioValence)^2 +
-                    (a.audioAcousticness - b.audioAcousticness)^2
+                    (new.audioDanceability - existing.audioDanceability)^2 +
+                    (new.audioValence - existing.audioValence)^2 +
+                    (new.audioAcousticness - existing.audioAcousticness)^2
                  ) AS distance
-            WITH a, b, 1 / (1 + distance) AS similarity
+            WITH new, existing, 1 / (1 + distance) AS similarity
             WHERE similarity > 0.5
-            MERGE (a)-[r:AUDIO_SIMILAR]-(b)
+            MERGE (new)-[r:AUDIO_SIMILAR]-(existing)
             SET r.similarity = similarity
-        `);
+            `,
+            { newMbids: newArtistMbids }
+        );
     } finally {
         await session.close();
     }

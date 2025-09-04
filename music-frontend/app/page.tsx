@@ -29,20 +29,28 @@ export default function Home() {
         if (artist.name === "" || artist.mbid === "") return;
 
         const fetchData = async () => {
-            const addedToNeo4j = await fetch(`http://localhost:3001/api/artist/import-artists?mbid=${artist.mbid}`, {
-                method: "GET"
-            });
+			console.time("fetchData")
+			
+			try {
+				const addedToNeo4j = await fetch(`http://localhost:3001/api/artist/import-artists?mbid=${artist.mbid}`, {
+					method: "GET"
+				});
 
-            await addedToNeo4j.json();
+				await addedToNeo4j.json();
 
-            const response = await fetch(`http://localhost:3001/query/${queryTypeUrls[queryType]}?name=${artist.name}&mbid=${artist.mbid}`, {
-                method: "GET",
-            });
+				const response = await fetch(`http://localhost:3001/query/${queryTypeUrls[queryType]}?name=${artist.name}&mbid=${artist.mbid}`, {
+					method: "GET",
+				});
 
-            const data = await response.json();
-            console.log(data.data)
-            setData(data.data);
-            setIsLoading(false);
+				const data = await response.json();
+				console.log(data.data)
+				setData(data.data);
+				
+			} finally {
+				setIsLoading(false);
+				console.timeEnd("fetchData");
+			}
+            
         }
         
         fetchData();

@@ -17,7 +17,7 @@ export default async function artistAggregatorRoutes(fastify: FastifyInstance) {
                     properties: {
                         success: { type: "boolean" },
                         data: {
-                            type: "array",
+                            type: "object",
                             additionalProperties: true
                         }
                     }
